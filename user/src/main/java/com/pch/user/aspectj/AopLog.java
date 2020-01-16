@@ -18,17 +18,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
- * <p>
- * 使用 aop 切面记录请求日志信息
- * </p>
+ * <p>使用aop记录controller日志</p>
  *
- * @package: com.xkcoding.log.aop.aspectj
- * @description: 使用 aop 切面记录请求日志信息
- * @author: yangkai.shen
- * @date: Created in 2018/10/1 10:05 PM
- * @copyright: Copyright (c) 2018
- * @version: V1.0
- * @modified: yangkai.shen
+ * @author pch
  */
 @Aspect
 @Component

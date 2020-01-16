@@ -6,7 +6,7 @@ public class CommonResult<T> implements Serializable {
 
     private static final long serialVersionUID = -7327749889983711127L;
 
-    public static final Integer SUCCESS_CODE = 0;
+    private static final Integer SUCCESS_CODE = 0;
 
     private Integer code;
 
