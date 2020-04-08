@@ -22,6 +22,7 @@ public class CommodityController {
 
     @GetMapping("/queryAllCommodity")
     public CommonResult<List<CommodityDto>> queryAllCommodity() {
+        System.out.println("");
         return success(commodityService.queryAllCommodity());
     }
 
