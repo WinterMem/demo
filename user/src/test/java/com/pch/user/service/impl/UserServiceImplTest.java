@@ -1,5 +1,6 @@
 package com.pch.user.service.impl;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class UserServiceImplTest {
 
     @Test
     public void queryUserByLoginTest() {
-        UserPO userPO = userService.queryUserByLogin("555");
+        Assert.assertNotNull(userService.queryUserByLogin("winter"));
     }
 
     @Test
