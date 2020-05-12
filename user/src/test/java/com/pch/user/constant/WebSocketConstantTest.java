@@ -1,6 +1,5 @@
 package com.pch.user.constant;
 
-import com.pch.user.config.ErrnoConstant;
 import com.pch.user.po.UserPO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -37,11 +36,5 @@ public class WebSocketConstantTest {
         for (UserPO userPO : treeSet) {
             log.info("treeSet 排序为: {}", userPO);
         }
-    }
-
-    @Test
-    public void testCase2() {
-        String realMsg = ErrnoConstant.getRealMsg("5");
-        realMsg = "tttt";
     }
 }
