@@ -27,4 +27,6 @@ public class UserPO implements Serializable {
     private String password;
 
     private String tellPhone;
+
+    private float money;
 }

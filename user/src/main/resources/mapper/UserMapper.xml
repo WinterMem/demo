@@ -3,8 +3,8 @@
 <mapper namespace="com.pch.user.dao.UserMapper">
 
   <insert id="insertUser" parameterType="string">
-    insert into user (id, username, password, tellPhone, loginName)
-    values (#{id}, #{username}, #{password}, #{tellPhone}, #{loginName})
+    insert into user (id, username, password, tellPhone, loginName, money)
+    values (#{id}, #{username}, #{password}, #{tellPhone}, #{loginName}, #{money})
   </insert>
 
   <select id="queryUserByLogin" resultType="com.pch.user.po.UserPO">

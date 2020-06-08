@@ -1,9 +1,10 @@
 package com.pch.user.controller;
 
-import com.pch.user.common.CommonResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.pch.user.common.CommonResult;
 
 import static com.pch.user.common.CommonResult.success;
 
@@ -16,5 +17,7 @@ public class WebSocketController {
 
         return success("发送成功");
     }
+
+
 
 }

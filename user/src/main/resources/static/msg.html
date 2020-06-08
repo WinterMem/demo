@@ -6,6 +6,7 @@
     <script src="js/sockjs.min.js"></script>
     <script src="js/stomp.js"></script>
     <title>Title</title>
+    <script src="../../../../../webpack-study/webpack.config.js"></script>
 </head>
 <body>
 
@@ -36,7 +37,7 @@
                     // 另外再注册一下消息推送
                     stompClient.subscribe(wsTopic, (response) => {
                         console.log(response.body)
-                        this.server = JSON.parse(response.body);
+                        this.server = JSON.parse(response.body.data);
                     });
                 })
             }

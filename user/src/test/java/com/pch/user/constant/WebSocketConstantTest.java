@@ -1,11 +1,13 @@
 package com.pch.user.constant;
 
-import com.pch.user.po.UserPO;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 
 import java.util.Set;
 import java.util.TreeSet;
+
+import org.junit.Test;
+
+import com.pch.user.po.UserPO;
 
 @Slf4j
 public class WebSocketConstantTest {
@@ -26,11 +28,11 @@ public class WebSocketConstantTest {
             return user1.getLoginName().compareTo(user2.getLoginName());
         });
 
-        treeSet.add(new UserPO(0, "start", "ttt", null, null));
-        treeSet.add(new UserPO(0, "start", "uuu", null, null));
-        treeSet.add(new UserPO(0, "end", "888", null, null));
-        treeSet.add(new UserPO(0, "tom", "uuu", null, null));
-        treeSet.add(new UserPO(0, "end", "iii", null, null));
+        treeSet.add(new UserPO(0, "start", "ttt", null, null,0));
+        treeSet.add(new UserPO(0, "start", "uuu", null, null,0));
+        treeSet.add(new UserPO(0, "end", "888", null, null,0));
+        treeSet.add(new UserPO(0, "tom", "uuu", null, null,0));
+        treeSet.add(new UserPO(0, "end", "iii", null, null,0));
 
 //        treeSet.forEach(log::info);
         for (UserPO userPO : treeSet) {
