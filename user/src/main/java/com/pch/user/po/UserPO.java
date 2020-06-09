@@ -7,6 +7,8 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  *
  */
@@ -20,8 +22,10 @@ public class UserPO implements Serializable {
 
     private Integer id;
 
+    @NotEmpty
     private String username;
 
+    @NotEmpty
     private String loginName;
 
     private String password;

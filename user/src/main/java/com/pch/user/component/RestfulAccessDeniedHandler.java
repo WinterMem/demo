@@ -1,5 +1,7 @@
 package com.pch.user.component;
 
+import cn.hutool.json.JSONUtil;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
+
+import com.pch.user.common.CommonResult;
 
 /**
  * 自定义返回结果：没有权限访问时
@@ -22,7 +26,7 @@ public class RestfulAccessDeniedHandler implements AccessDeniedHandler {
         response.setHeader("Cache-Control","no-cache");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
-//        response.getWriter().println(JSONUtil.parse(CommonResult.forbidden(e.getMessage())));
-//        response.getWriter().flush();
+        response.getWriter().println(JSONUtil.parse(CommonResult.forbidden(e.getMessage())));
+        response.getWriter().flush();
     }
 }

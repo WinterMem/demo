@@ -1,7 +1,18 @@
 package com.pch.user.common;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 
+import org.springframework.http.HttpStatus;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CommonResult<T> implements Serializable {
 
     private static final long serialVersionUID = -7327749889983711127L;
@@ -20,9 +31,6 @@ public class CommonResult<T> implements Serializable {
     /**
      * 成功返回结果
      *
-     * @param data
-     * @param <T>
-     * @return
      */
     public static<T> CommonResult<T> success(T data) {
         CommonResult<T> commonResult = new CommonResult<>();
@@ -34,10 +42,6 @@ public class CommonResult<T> implements Serializable {
     /**
      * 失败返回结果
      *
-     * @param code
-     * @param message
-     * @param <T>
-     * @return
      */
     public static<T> CommonResult<T> fail(Integer code, String message) {
         CommonResult<T> commonResult = new CommonResult<>();
@@ -47,28 +51,18 @@ public class CommonResult<T> implements Serializable {
         return commonResult;
     }
 
-    public Integer getCode() {
-        return code;
+    /**
+     * 未登录返回信息
+     *
+     */
+    public static <T> CommonResult<T> unauthorized(T data) {
+        return new CommonResult<T>(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase(), data);
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
+    /**
+     * 未授权返回结果
+     */
+    public static <T> CommonResult<T> forbidden(T data) {
+        return new CommonResult<T>(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN.getReasonPhrase(), data);
     }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
 }
