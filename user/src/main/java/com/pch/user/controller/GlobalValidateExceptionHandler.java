@@ -44,7 +44,9 @@ public class GlobalValidateExceptionHandler {
         return CommonResult.fail(10001, message);
     }
 
-    //处理请求参数格式错误 @RequestBody上validate失败后抛出的异常是MethodArgumentNotValidException异常。
+    /**
+     * 处理请求参数格式错误 @RequestBody上validate失败后抛出的异常是MethodArgumentNotValidException异常。
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
     public CommonResult MethodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
