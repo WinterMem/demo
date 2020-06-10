@@ -21,6 +21,7 @@
     <io.jsonwebtoken>0.9.0</io.jsonwebtoken>
     <com.auth0>3.4.0</com.auth0>
     <org.mybatis.spring.boot>2.1.1</org.mybatis.spring.boot>
+    <io.springfox>2.9.2</io.springfox>
   </properties>
 
   <dependencies>
@@ -83,6 +84,16 @@
       <groupId>cn.hutool</groupId>
       <artifactId>hutool-all</artifactId>
       <version>${cn.hutool}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+      <version>${io.springfox}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <version>${io.springfox}</version>
     </dependency>
 
     <dependency>

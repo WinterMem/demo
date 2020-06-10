@@ -1,4 +1,4 @@
-package com.pch.user.controller;
+package com.pch.user.exception;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -57,4 +57,11 @@ public class GlobalValidateExceptionHandler {
                 .collect(Collectors.joining());
         return CommonResult.fail(10003, message);
     }
+
+//    @ExceptionHandler(UsernameNotFoundException.class)
+//    @ResponseBody
+//    public CommonResult UsernameNotFoundExceptionHandler(UsernameNotFoundException e) {
+//        String message = e.getMessage();
+//        return CommonResult.fail(10004, message);
+//    }
 }

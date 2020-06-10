@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.pch.user.po.UserPO;
 import com.pch.user.service.UserService;
 
 @SpringBootTest
@@ -21,8 +20,7 @@ public class UserApplicationTests {
 
     @Test
     public void contextLoads() {
-        UserPO userPO = userService.queryUserByLogin("4555");
-        log.info("user : {}", userPO);
+
     }
 
 }

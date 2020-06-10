@@ -41,10 +41,10 @@ public class JwtUtil implements Serializable {
      */
     public String generateToken(Map<String, Object> claims) {
         return Jwts.builder()
-            .setClaims(claims)
-            .setExpiration(generateExpirationDate())
-            .signWith(SignatureAlgorithm.HS512, secret)
-            .compact();
+                .setClaims(claims)
+                .setExpiration(generateExpirationDate())
+                .signWith(SignatureAlgorithm.HS512, secret)
+                .compact();
     }
 
     /**
@@ -57,9 +57,9 @@ public class JwtUtil implements Serializable {
         Claims claims = null;
         try {
             claims = Jwts.parser()
-                .setSigningKey(secret)
-                .parseClaimsJws(token)
-                .getBody();
+                    .setSigningKey(secret)
+                    .parseClaimsJws(token)
+                    .getBody();
         } catch (ExpiredJwtException e) {
             log.info("JWT格式验证失败:{}", token);
         }
@@ -137,10 +137,8 @@ public class JwtUtil implements Serializable {
     }
 
     /**
-     * @param token     源token
-     * @param time      有效时间
-     *
-     * @return
+     * @param token 源token
+     * @param time  有效时间
      */
     private boolean tokenRefreshJustBefore(String token, int time) {
         Claims claims = getClaimsFromToken(token);

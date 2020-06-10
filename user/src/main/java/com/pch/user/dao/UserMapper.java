@@ -7,7 +7,7 @@ import com.pch.user.po.UserPO;
 @Repository
 public interface UserMapper {
 
-    UserPO queryUserByLogin(String username);
-
     int insertUser(UserPO userPO);
+
+    UserPO loadUserByUsername(String username);
 }

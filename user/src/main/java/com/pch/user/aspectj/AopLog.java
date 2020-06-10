@@ -13,6 +13,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -47,8 +48,8 @@ public class AopLog {
 
         HttpServletRequest request = Objects.requireNonNull(attributes).getRequest();
 
-        log.error("【请求 URL】：{}", request.getRequestURL());
-        log.error("【请求 IP】：{}", request.getRemoteAddr());
+        log.warn("【请求 URL】：{}", request.getRequestURL());
+        log.info("【请求 IP】：{}", request.getRemoteAddr());
         log.info("【请求类名】：{}，【请求方法名】：{}", point.getSignature().getDeclaringTypeName(), point.getSignature().getName());
 
 //        String[] parameterNames = ((MethodSignature) point.getSignature()).getParameterNames();
@@ -69,7 +70,11 @@ public class AopLog {
     @Around("log()")
     public Object aroundLog(ProceedingJoinPoint point) throws Throwable {
         Object result = point.proceed();
-        log.error("【返回值】：{}", result);
+        // 获取参数名称
+        String[] parameterNames = ((MethodSignature) point.getSignature()).getParameterNames();
+        // 获取参数数值
+        Object[] args = point.getArgs();
+        log.info("【返回值】：{}", result);
         return result;
     }
 
@@ -83,7 +88,7 @@ public class AopLog {
 
         Long start = (Long) request.getAttribute(START_TIME);
         Long end = System.currentTimeMillis();
-        log.error("【请求耗时】：{}毫秒", end - start);
+        log.warn("【请求耗时】：{}毫秒", end - start);
 
         String header = request.getHeader("User-Agent");
 //        UserAgent userAgent = UserAgent.parseUserAgentString(header);

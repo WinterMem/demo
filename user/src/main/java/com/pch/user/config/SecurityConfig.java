@@ -1,7 +1,6 @@
 package com.pch.user.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,7 +23,6 @@ import com.pch.user.util.JwtUtil;
  * @Date: Created in 11:50 2020/6/4
  * @Modified By:
  */
-@Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override

@@ -11,9 +11,9 @@ spring:
         password: root
         driver-class-name: com.mysql.cj.jdbc.Driver
 
-    mybatis:
-        mapper-locations: classpath:mapper/*.xml
-        type-aliases-package: com.pch.user.po
+mybatis:
+    mapper-locations: classpath:mapper/*.xml
+    type-aliases-package: com.pch.user.po
 
 logging:
     level:

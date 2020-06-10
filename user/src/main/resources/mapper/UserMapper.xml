@@ -7,7 +7,7 @@
     values (#{id}, #{username}, #{password}, #{tellPhone}, #{loginName}, #{money})
   </insert>
 
-  <select id="queryUserByLogin" resultType="com.pch.user.po.UserPO">
+  <select id="loadUserByUsername" resultType="com.pch.user.po.UserPO">
     select * from user
     where username = #{username}
   </select>
