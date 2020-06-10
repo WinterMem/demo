@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
+import org.springframework.security.web.FilterInvocation;
 
 /**
  * @Author: pch
@@ -20,7 +21,7 @@ public class DynamicSecurityFilter extends AbstractSecurityInterceptor implement
 
     @Override
     public Class<?> getSecureObjectClass() {
-        return null;
+        return FilterInvocation.class;
     }
 
     @Override

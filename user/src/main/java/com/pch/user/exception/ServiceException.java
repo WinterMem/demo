@@ -12,7 +12,7 @@ public final class ServiceException extends RuntimeException {
      */
     private Integer code;
 
-    public ServiceException(String message, Integer code) {
+    public ServiceException(Integer code, String message) {
         super(message);
         this.code = code;
     }
