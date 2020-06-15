@@ -117,7 +117,7 @@ public class JwtUtil implements Serializable {
             return null;
         }
         String token = oldToken.substring(tokenHead.length());
-        if (StrUtil.isEmpty(oldToken)) {
+        if (StrUtil.isEmpty(token)) {
             return null;
         }
         Claims claims = getClaimsFromToken(token);

@@ -1,6 +1,7 @@
 package com.pch.user.bo;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,9 +14,11 @@ import com.pch.user.po.UserPO;
 public class MyUserDetails implements UserDetails {
 
     private UserPO userPO;
+    private List<RoleBo> roleBos;
 
-    public MyUserDetails(UserPO userPO) {
+    public MyUserDetails(UserPO userPO, List<RoleBo> roleBos) {
         this.userPO = userPO;
+        this.roleBos = roleBos;
     }
 
 

@@ -39,9 +39,9 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("user后台系统")
-                .description("user后台模块")
-                .contact("macro")
+                .title("www.baidu.com")
+                .description("user后台系统")
+                .termsOfServiceUrl("https://www.jianshu.com/p/8033ef83a8ed")
                 .version("1.0")
                 .build();
     }

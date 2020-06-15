@@ -74,6 +74,9 @@ public class AopLog {
         String[] parameterNames = ((MethodSignature) point.getSignature()).getParameterNames();
         // 获取参数数值
         Object[] args = point.getArgs();
+        for (int i = 0; i < args.length; i++) {
+            log.info("参数结果为{}：{}", parameterNames[i], args[i]);
+        }
         log.info("【返回值】：{}", result);
         return result;
     }

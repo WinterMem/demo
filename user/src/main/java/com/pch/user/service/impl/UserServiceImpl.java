@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
         if (null == userPO) {
             throw new UsernameNotFoundException("用户名或密码错误");
         }
-        return new MyUserDetails(userPO);
+        return new MyUserDetails(userPO, null);
     }
 
     @Override
