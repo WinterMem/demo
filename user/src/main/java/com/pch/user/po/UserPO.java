@@ -7,8 +7,6 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotEmpty;
-
 /**
  *
  */
@@ -22,15 +20,28 @@ public class UserPO implements Serializable {
 
     private Integer id;
 
-    @NotEmpty
+    /**
+     * 用户名
+     */
     private String username;
 
-    @NotEmpty
+    /**
+     * 登录名称
+     */
     private String loginName;
 
+    /**
+     * 密码
+     */
     private String password;
 
+    /**
+     * tell
+     */
     private String tellPhone;
 
+    /**
+     * 金钱
+     */
     private float money;
 }

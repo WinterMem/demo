@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.pch.user.bo.MyUserDetails;
+import com.pch.user.po.MyUserDetails;
 import com.pch.user.dao.UserMapper;
 import com.pch.user.dto.UserDTO;
 import com.pch.user.po.UserPO;

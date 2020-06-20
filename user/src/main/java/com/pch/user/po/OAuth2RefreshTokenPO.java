@@ -1,4 +1,4 @@
-package com.pch.user.bo;
+package com.pch.user.po;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Data
 @Accessors(chain = true)
-public class OAuth2RefreshTokenDO implements Serializable {
+public class OAuth2RefreshTokenPO implements Serializable {
 
     private static final long serialVersionUID = 6900465040573021492L;
 

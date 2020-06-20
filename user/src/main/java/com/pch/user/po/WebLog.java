@@ -1,4 +1,4 @@
-package com.pch.user.bo;
+package com.pch.user.po;
 
 /**
  * Controller层的日志封装类
