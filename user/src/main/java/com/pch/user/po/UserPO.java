@@ -40,8 +40,8 @@ public class UserPO implements Serializable {
      */
     private String tellPhone;
 
-    /**
-     * 金钱
-     */
-    private float money;
+//    /**
+//     * 金钱
+//     */
+//    private float money;
 }

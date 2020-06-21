@@ -28,11 +28,6 @@ public class WebSocketConstantTest {
             return user1.getLoginName().compareTo(user2.getLoginName());
         });
 
-        treeSet.add(new UserPO(0, "start", "ttt", null, null,0));
-        treeSet.add(new UserPO(0, "start", "uuu", null, null,0));
-        treeSet.add(new UserPO(0, "end", "888", null, null,0));
-        treeSet.add(new UserPO(0, "tom", "uuu", null, null,0));
-        treeSet.add(new UserPO(0, "end", "iii", null, null,0));
 
 //        treeSet.forEach(log::info);
         for (UserPO userPO : treeSet) {

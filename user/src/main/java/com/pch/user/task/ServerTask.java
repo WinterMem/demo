@@ -2,8 +2,6 @@ package com.pch.user.task;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.text.SimpleDateFormat;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
@@ -17,8 +15,6 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class ServerTask {
-
-    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
