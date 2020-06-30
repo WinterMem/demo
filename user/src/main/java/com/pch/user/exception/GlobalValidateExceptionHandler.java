@@ -31,7 +31,7 @@ public class GlobalValidateExceptionHandler {
                 .stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.joining());
-        return CommonResult.fail(10000, message);
+        return CommonResult.failed(10000L, message);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
@@ -41,7 +41,7 @@ public class GlobalValidateExceptionHandler {
                 .stream()
                 .map(ConstraintViolation::getMessage)
                 .collect(Collectors.joining());
-        return CommonResult.fail(10001, message);
+        return CommonResult.failed(10001L, message);
     }
 
     /**
@@ -55,7 +55,7 @@ public class GlobalValidateExceptionHandler {
                 .stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.joining());
-        return CommonResult.fail(10003, message);
+        return CommonResult.failed(10003L, message);
     }
 
 //    @ExceptionHandler(UsernameNotFoundException.class)

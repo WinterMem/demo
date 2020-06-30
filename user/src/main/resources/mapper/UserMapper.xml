@@ -2,18 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pch.user.dao.UserMapper">
   <sql id="files">
-    id, username, password, tellphone, login_name
+
+
+    id, username, password, tellphone, login_name, email
+
+
   </sql>
 
   <insert id="insertUser" parameterType="string">
+
+
     insert into tb_user (id, username, password, tellphone, login_name)
-    values (#{id}, #{username}, #{password}, #{tellPhone}, #{loginName})
+    values (#{id}, #{username}, #{password}, #{telephone}, #{loginName})
+
+
   </insert>
 
   <select id="loadUserByUsername" resultType="com.pch.user.po.UserPO">
+
+
     select
+
+
     <include refid="files"/>
+
+
     from tb_user
     where username = #{username}
+
+
+  </select>
+  <select id="queryUserByEmailOrTell" resultType="java.lang.String">
+
+    select telephone from  tb_user where telephone = #{telephone}
+    union
+    select email from tb_user where email = #{email}
+
   </select>
 </mapper>

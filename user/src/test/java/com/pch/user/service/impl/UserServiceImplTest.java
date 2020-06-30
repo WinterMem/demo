@@ -6,14 +6,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import com.pch.user.dto.UserDTO;
-import com.pch.user.po.UserPO;
 import com.pch.user.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -38,16 +36,10 @@ public class UserServiceImplTest {
 
     @Test
     public void insertUser() {
-        UserPO userPO = new UserPO();
-        userPO.setUsername("管理员");
-        userPO.setLoginName("admin");
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String admin1 = passwordEncoder.encode("admin");
-        log.info(admin1);
-        String admin = bCryptPasswordEncoder.encode("admin");
-        userPO.setPassword(admin);
-        userPO.setTellPhone("17771568965");
-        userService.insertUser(userPO);
+        UserDTO userDTO = new UserDTO();
+//        userDTO.setUsername("winter").setLoginName("")
+//        userService.
+//        userService.insertUser();
     }
 
     @Test

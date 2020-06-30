@@ -15,4 +15,7 @@ public interface UserConvert {
     @Mappings({})
     UserDTO UserDTOCovert(UserPO userPO);
 
+    @Mappings({})
+    UserPO userDtoToPoConvert(UserDTO userDTO);
+
 }

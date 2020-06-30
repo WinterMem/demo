@@ -38,7 +38,12 @@ public class UserPO implements Serializable {
     /**
      * tell
      */
-    private String tellPhone;
+    private String telephone;
+
+    /**
+     * 邮箱
+     */
+    private String email;
 
 //    /**
 //     * 金钱

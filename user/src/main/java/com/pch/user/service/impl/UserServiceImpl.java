@@ -2,14 +2,19 @@ package com.pch.user.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.pch.user.po.MyUserDetails;
+import com.pch.user.constant.SysState;
+import com.pch.user.convert.UserConvert;
 import com.pch.user.dao.UserMapper;
 import com.pch.user.dto.UserDTO;
+import com.pch.user.exception.ServiceException;
+import com.pch.user.po.MyUserDetails;
 import com.pch.user.po.UserPO;
 import com.pch.user.service.UserService;
 
@@ -30,14 +35,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String login(UserDTO userDTO) {
-        UserDetails userDetails = loadUserByUsername(userDTO.getUsername());
+    public String login(String email, String password, String telephone, String captcha) {
 
         return null;
     }
 
     @Override
-    public int insertUser(UserPO userPO) {
-        return userMapper.insertUser(userPO);
+    public Integer insertUser(UserDTO userDTO) {
+        List<String> strings = userMapper.queryUserByEmailOrTell(userDTO.getEmail(),
+            userDTO.getTelephone());
+        if (strings.size() > 1) {
+            throw new ServiceException(SysState.user_exist);
+        }
+        return userMapper.insertUser(UserConvert.INSTANCE.userDtoToPoConvert(userDTO));
     }
 }

@@ -20,7 +20,7 @@ public class UserConvertTest {
     public static List<UserPO> getUserPOList() {
         List<UserPO> arrayList = new ArrayList<>(300);
         for (int i = 0; i < 100; i++) {
-            UserPO userPO = new UserPO(i, "username" + i, null, null, null);
+            UserPO userPO = new UserPO(i, "username" + i, null, null, null, null);
             arrayList.add(userPO);
         }
         return arrayList;
@@ -30,7 +30,7 @@ public class UserConvertTest {
     public void userDTOCovert() {
         UserPO userPO = new UserPO();
         userPO.setId(111).setUsername("winter").setPassword("winter")
-            .setLoginName("winter").setTellPhone("1111");
+            .setLoginName("winter").setTelephone("1111");
         UserDTO userDTO = UserConvert.INSTANCE.UserDTOCovert(userPO);
         log.info("userDTO : {}", userDTO);
     }
