@@ -5,22 +5,22 @@ package com.pch.user.constant;
  */
 public enum SysState {
 
-    upload_err(1000, "上传失败"),
+    upload_err(1000L, "上传失败"),
 
     /*** user相关service错误编码 */
-    user_exist(40000001, "改登录名已存在")
+    user_exist(40000001L, "改登录名已存在")
     ;
 
-    private final int code;
+    private final Long code;
 
     private final String message;
 
-    private SysState(int code, String message) {
+    private SysState(Long code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public int getCode() {
+    public Long getCode() {
         return code;
     }
 

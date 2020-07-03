@@ -23,9 +23,12 @@ import com.pch.user.common.CommonResult;
 @Slf4j
 public class GlobalValidateExceptionHandler {
 
+    /**
+     * 处理Get请求中 使用@Valid 验证路径中请求实体校验失败后抛出的异常
+     */
     @ExceptionHandler(BindException.class)
     @ResponseBody
-    public CommonResult BindExceptionHandler(BindException e) {
+    public CommonResult<Boolean> BindExceptionHandler(BindException e) {
         String message = e.getBindingResult()
                 .getAllErrors()
                 .stream()
@@ -34,9 +37,12 @@ public class GlobalValidateExceptionHandler {
         return CommonResult.failed(10000L, message);
     }
 
+    /**
+     * 处理请求参数格式错误 @RequestParam上validate失败后抛出的异常是javax.validation.ConstraintViolationException
+     */
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseBody
-    public CommonResult ConstraintViolationExceptionHandler(ConstraintViolationException e) {
+    public CommonResult<Boolean> ConstraintViolationExceptionHandler(ConstraintViolationException e) {
         String message = e.getConstraintViolations()
                 .stream()
                 .map(ConstraintViolation::getMessage)
@@ -49,13 +55,19 @@ public class GlobalValidateExceptionHandler {
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
-    public CommonResult MethodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
+    public CommonResult<Boolean> MethodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
         String message = e.getBindingResult()
                 .getAllErrors()
                 .stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.joining());
         return CommonResult.failed(10003L, message);
+    }
+
+    @ExceptionHandler(ServiceException.class)
+    @ResponseBody
+    public CommonResult<Boolean> ServiceExceptionHandler(ServiceException e) {
+        return CommonResult.failed(e.getCode(), e.getMessage());
     }
 
 //    @ExceptionHandler(UsernameNotFoundException.class)

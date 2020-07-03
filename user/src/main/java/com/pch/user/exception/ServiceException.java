@@ -17,15 +17,15 @@ public final class ServiceException extends RuntimeException {
     /**
      * 错误编码
      */
-    private Integer code;
+    private Long code;
 
     /**
      * 错误信息
      */
     private String message;
 
-    public ServiceException(Integer code, String message) {
-        super(message);
+    public ServiceException(Long code, String message) {
+        this.message = message;
         this.code = code;
     }
 

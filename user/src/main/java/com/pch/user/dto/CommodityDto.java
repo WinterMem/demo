@@ -1,9 +1,12 @@
 package com.pch.user.dto;
 
+import io.swagger.annotations.ApiParam;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+
+import javax.validation.constraints.NotEmpty;
 
 /**
  * 商品
@@ -17,11 +20,14 @@ public class CommodityDto implements Serializable {
     /**
      * 商品名称
      */
+    @ApiParam("商品名称")
+    @NotEmpty(message = "shop name is not empty")
     private String name;
 
     /**
      * 商品价格
      */
+    @ApiParam("商品价格")
     private Double price;
 
     /**

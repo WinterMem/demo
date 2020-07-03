@@ -74,4 +74,10 @@ public class UserConvertTest {
         List<Integer> integerStream = getUserPOList().stream().map(UserPO::getId).collect(Collectors.toList());
         log.info("map 过滤值为{}", integerStream);
     }
+
+    @Test
+    public void testCase2() {
+        ArrayList<UserPO> userPOS = new ArrayList<>();
+        List<UserPO> collect = userPOS.stream().limit(5).collect(Collectors.toList());
+    }
 }

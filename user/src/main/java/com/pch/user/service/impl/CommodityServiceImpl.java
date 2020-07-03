@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.pch.user.convert.CommodityConvert;
 import com.pch.user.dao.CommodityMapper;
 import com.pch.user.dto.CommodityDto;
+import com.pch.user.exception.ServiceException;
 import com.pch.user.po.CommodityPO;
 import com.pch.user.service.CommodityService;
 
@@ -19,6 +20,9 @@ public class CommodityServiceImpl implements CommodityService {
 
     @Override
     public List<CommodityDto> queryAllCommodity() {
+        if (true) {
+            throw new ServiceException(100L, "ceshi");
+        }
         List<CommodityPO> commodityPOS = commodityMapper.queryAllCommodity();
         return CommodityConvert.CONVERT.COMMODITY_DTO_LIST(commodityPOS);
     }

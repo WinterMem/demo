@@ -2,8 +2,11 @@ package com.pch.user.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,12 +25,11 @@ public class CommodityController {
 
     @GetMapping("/queryAllCommodity")
     public CommonResult<List<CommodityDto>> queryAllCommodity() {
-        System.out.println("");
         return success(commodityService.queryAllCommodity());
     }
 
     @GetMapping("/insertAllCommodity")
-    public CommonResult<Integer> insertAllCommodity(CommodityDto commodityDto) {
+    public CommonResult<Integer> insertAllCommodity(@RequestBody @Valid CommodityDto commodityDto) {
         return success(commodityService.insertCommodity(commodityDto));
     }
 
