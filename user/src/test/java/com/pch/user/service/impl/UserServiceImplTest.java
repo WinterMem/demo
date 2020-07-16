@@ -11,7 +11,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import com.pch.user.dao.UserMapper;
 import com.pch.user.dto.UserDTO;
+import com.pch.user.po.UserPO;
 import com.pch.user.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,6 +29,8 @@ public class UserServiceImplTest {
     private RequestMappingHandlerAdapter requestMappingHandlerAdapter;
     @Autowired
     private RequestMappingHandlerMapping requestMappingHandlerMapping;
+    @Autowired
+    private UserMapper userMapper;
 
     @Test
     public void queryUserByLoginTest() {
@@ -44,8 +48,8 @@ public class UserServiceImplTest {
 
     @Test
     public void login() {
-        UserDTO userDTO = new UserDTO();
-//        userService.login()
+        UserPO userPO = userMapper.selectById(1);
+        System.out.println(userPO);
     }
 
 }

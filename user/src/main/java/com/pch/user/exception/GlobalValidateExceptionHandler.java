@@ -1,12 +1,9 @@
 package com.pch.user.exception;
 
-import lombok.extern.slf4j.Slf4j;
-
+import com.pch.user.common.CommonResult;
 import java.util.stream.Collectors;
-
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -14,13 +11,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pch.user.common.CommonResult;
-
 /**
  * @Author: pch
  */
 @ControllerAdvice
-@Slf4j
 public class GlobalValidateExceptionHandler {
 
     /**
@@ -30,10 +24,10 @@ public class GlobalValidateExceptionHandler {
     @ResponseBody
     public CommonResult<Boolean> BindExceptionHandler(BindException e) {
         String message = e.getBindingResult()
-                .getAllErrors()
-                .stream()
-                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                .collect(Collectors.joining());
+            .getAllErrors()
+            .stream()
+            .map(DefaultMessageSourceResolvable::getDefaultMessage)
+            .collect(Collectors.joining());
         return CommonResult.failed(10000L, message);
     }
 
@@ -42,11 +36,12 @@ public class GlobalValidateExceptionHandler {
      */
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseBody
-    public CommonResult<Boolean> ConstraintViolationExceptionHandler(ConstraintViolationException e) {
+    public CommonResult<Boolean> ConstraintViolationExceptionHandler(
+        ConstraintViolationException e) {
         String message = e.getConstraintViolations()
-                .stream()
-                .map(ConstraintViolation::getMessage)
-                .collect(Collectors.joining());
+            .stream()
+            .map(ConstraintViolation::getMessage)
+            .collect(Collectors.joining());
         return CommonResult.failed(10001L, message);
     }
 
@@ -55,12 +50,13 @@ public class GlobalValidateExceptionHandler {
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
-    public CommonResult<Boolean> MethodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
+    public CommonResult<Boolean> MethodArgumentNotValidExceptionHandler(
+        MethodArgumentNotValidException e) {
         String message = e.getBindingResult()
-                .getAllErrors()
-                .stream()
-                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                .collect(Collectors.joining());
+            .getAllErrors()
+            .stream()
+            .map(DefaultMessageSourceResolvable::getDefaultMessage)
+            .collect(Collectors.joining());
         return CommonResult.failed(10003L, message);
     }
 

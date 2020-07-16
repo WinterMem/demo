@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.pch.user.po.CommodityPO;
 
 @Repository
-public interface CommodityMapper {
+public interface CommodityMapper extends com.baomidou.mybatisplus.core.mapper.BaseMapper<CommodityPO> {
 
     /**
      * 查询所有商品

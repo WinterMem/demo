@@ -1,19 +1,18 @@
 package com.pch.user.po;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
  *
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Accessors(chain = true)
+@TableName("tb_user")
 public class UserPO implements Serializable {
 
     private static final long serialVersionUID = -8692760072307721060L;

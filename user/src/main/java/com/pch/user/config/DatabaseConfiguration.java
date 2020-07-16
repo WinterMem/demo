@@ -6,10 +6,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  *
- *
  */
 @Component
-@MapperScan("com.pch.user.dao") // 扫描对应的 Mapper 接口
+@MapperScan({"com.pch.user.dao", "com.baomidou.mybatisplus.samples.quickstart.mapper"}) // 扫描对应的 Mapper 接口
 @EnableTransactionManagement(proxyTargetClass = true)
 public class DatabaseConfiguration {
 

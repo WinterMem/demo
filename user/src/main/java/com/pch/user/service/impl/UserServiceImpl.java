@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer insertUser(UserDTO userDTO) {
+        UserPO userPO = userMapper.selectById(10);
         List<String> strings = userMapper.queryUserByEmailOrTell(userDTO.getEmail(),
             userDTO.getTelephone());
         if (strings.size() > 1) {
