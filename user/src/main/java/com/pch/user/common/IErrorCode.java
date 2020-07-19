@@ -5,7 +5,7 @@ package com.pch.user.common;
  * Created by macro on 2019/4/19.
  */
 public interface IErrorCode {
-    Long getCode();
+	Long getCode();
 
-    String getMessage();
+	String getMessage();
 }

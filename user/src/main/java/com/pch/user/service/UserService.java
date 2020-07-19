@@ -1,14 +1,14 @@
 package com.pch.user.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
-
 import com.pch.user.dto.UserDTO;
+
+import org.springframework.security.core.userdetails.UserDetails;
 
 public interface UserService {
 
-    UserDetails loadUserByUsername(String username);
+	UserDetails loadUserByUsername(String username);
 
-    Integer insertUser(UserDTO userDTO);
+	Integer insertUser(UserDTO userDTO);
 
-    String login(String name, String password, String tellPhone, String captcha);
+	String login(UserDTO userDTO);
 }

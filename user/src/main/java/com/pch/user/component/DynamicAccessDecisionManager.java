@@ -1,7 +1,5 @@
 package com.pch.user.component;
 
-import cn.hutool.core.collection.CollUtil;
-
 import java.util.Collection;
 
 import org.springframework.security.access.AccessDecisionManager;
@@ -11,15 +9,16 @@ import org.springframework.security.authentication.InsufficientAuthenticationExc
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
+import cn.hutool.core.collection.CollUtil;
+
 /**
  * @Author: pch
  */
 public class DynamicAccessDecisionManager implements AccessDecisionManager {
 
     @Override
-    public void decide(Authentication authentication,
-                       Object object,
-                       Collection<ConfigAttribute> configAttributes)
+    public void decide(Authentication authentication, Object object,
+            Collection<ConfigAttribute> configAttributes)
             throws AccessDeniedException, InsufficientAuthenticationException {
         if (CollUtil.isEmpty(configAttributes)) {
             return;

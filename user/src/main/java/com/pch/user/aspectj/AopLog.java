@@ -1,11 +1,10 @@
 package com.pch.user.aspectj;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -14,6 +13,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -27,74 +27,74 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Component
 @Slf4j
 public class AopLog {
-    private static final String START_TIME = "request-start";
+	private static final String START_TIME = "request-start";
 
-    /**
-     * 切入点
-     */
-    @Pointcut("execution(public * com.pch.user.controller.*Controller.*(..))")
-    public void log() {
+	/**
+	 * 切入点
+	 */
+	@Pointcut("execution(public * com.pch.user.controller.*Controller.*(..))")
+	public void log() {
 
-    }
+	}
 
-    /**
-     * 前置操作
-     *
-     * @param point 切入点
-     */
-    @Before("log()")
-    public void beforeLog(JoinPoint point) {
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+	/**
+	 * 前置操作
+	 *
+	 * @param point 切入点
+	 */
+	@Before("log()")
+	public void beforeLog(JoinPoint point) {
+		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 
-        HttpServletRequest request = Objects.requireNonNull(attributes).getRequest();
+		HttpServletRequest request = Objects.requireNonNull(attributes).getRequest();
 
-        log.warn("【请求 URL】：{}", request.getRequestURL());
-        log.info("【请求 IP】：{}", request.getRemoteAddr());
-        log.info("【请求类名】：{}，【请求方法名】：{}", point.getSignature().getDeclaringTypeName(), point.getSignature().getName());
+		AopLog.log.warn("【请求 URL】：{}", request.getRequestURL());
+		AopLog.log.info("【请求 IP】：{}", request.getRemoteAddr());
+		AopLog.log.info("【请求类名】：{}，【请求方法名】：{}", point.getSignature().getDeclaringTypeName(), point.getSignature().getName());
 
 //        String[] parameterNames = ((MethodSignature) point.getSignature()).getParameterNames();
 //        Map<String, String[]> parameterMap = request.getParameterMap();
 //        log.error("【请求参数】：{}，", JSONUtil.toJsonStr(parameterMap));
 //        log.error("【请求参数】：{}，", JSONUtil.toJsonStr(point.getArgs()));
-        Long start = System.currentTimeMillis();
-        request.setAttribute(START_TIME, start);
-    }
+		Long start = System.currentTimeMillis();
+		request.setAttribute(AopLog.START_TIME, start);
+	}
 
-    /**
-     * 环绕操作
-     *
-     * @param point 切入点
-     * @return 原方法返回值
-     * @throws Throwable 异常信息
-     */
-    @Around("log()")
-    public Object aroundLog(ProceedingJoinPoint point) throws Throwable {
-        Object result = point.proceed();
-        // 获取参数名称
-        String[] parameterNames = ((MethodSignature) point.getSignature()).getParameterNames();
-        // 获取参数数值
-        Object[] args = point.getArgs();
-        for (int i = 0; i < args.length; i++) {
-            log.info("参数结果为{}：{}", parameterNames[i], args[i]);
-        }
-        log.info("【返回值】：{}", result);
-        return result;
-    }
+	/**
+	 * 环绕操作
+	 *
+	 * @param point 切入点
+	 * @return 原方法返回值
+	 * @throws Throwable 异常信息
+	 */
+	@Around("log()")
+	public Object aroundLog(ProceedingJoinPoint point) throws Throwable {
+		Object result = point.proceed();
+		// 获取参数名称
+		String[] parameterNames = ((MethodSignature) point.getSignature()).getParameterNames();
+		// 获取参数数值
+		Object[] args = point.getArgs();
+		for (int i = 0; i < args.length; i++) {
+			AopLog.log.info("参数结果为{}：{}", parameterNames[i], args[i]);
+		}
+		AopLog.log.info("【返回值】：{}", result);
+		return result;
+	}
 
-    /**
-     * 后置操作
-     */
-    @AfterReturning("log()")
-    public void afterReturning() {
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = Objects.requireNonNull(attributes).getRequest();
+	/**
+	 * 后置操作
+	 */
+	@AfterReturning("log()")
+	public void afterReturning() {
+		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+		HttpServletRequest request = Objects.requireNonNull(attributes).getRequest();
 
-        Long start = (Long) request.getAttribute(START_TIME);
-        Long end = System.currentTimeMillis();
-        log.warn("【请求耗时】：{}毫秒", end - start);
+		Long start = (Long) request.getAttribute(AopLog.START_TIME);
+		Long end = System.currentTimeMillis();
+		AopLog.log.warn("【请求耗时】：{}毫秒", end - start);
 
-        String header = request.getHeader("User-Agent");
+		String header = request.getHeader("User-Agent");
 //        UserAgent userAgent = UserAgent.parseUserAgentString(header);
 //        log.error("【浏览器类型】：{}，【操作系统】：{}，【原始User-Agent】：{}", userAgent.getBrowser().toString(), userAgent.getOperatingSystem().toString(), header);
-    }
+	}
 }

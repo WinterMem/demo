@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServerTask {
 
-    @Autowired
-    private SimpMessagingTemplate simpMessagingTemplate;
+	@Autowired
+	private SimpMessagingTemplate simpMessagingTemplate;
 
 //    @Scheduled(fixedRate = 1000)
 //    public void serverSendMsgToClient() {

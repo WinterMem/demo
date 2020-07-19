@@ -1,19 +1,18 @@
 package com.pch.user.util;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.pch.user.config.IgnoreUrlsConfig;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import com.pch.user.config.IgnoreUrlsConfig;
 
 /**
  * @Author: pch
@@ -23,23 +22,24 @@ import com.pch.user.config.IgnoreUrlsConfig;
 @Slf4j
 public class JwtUtilTest {
 
-    @Autowired
-    private JwtUtil jwtUtil;
-    @Autowired
-    private IgnoreUrlsConfig ignoreUrlsConfig;
+	@Autowired
+	private JwtUtil jwtUtil;
 
-    @Test
-    public void generateToken() {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("sub", "username");
-        claims.put("created", new Date());
-        String token = jwtUtil.generateToken(claims);
-        log.info("测试token为：{}", token);
-    }
+	@Autowired
+	private IgnoreUrlsConfig ignoreUrlsConfig;
 
-    @Test
-    public void ignoreUrlsConfig() {
-        List<String> urls = ignoreUrlsConfig.getUrls();
-        System.out.println(urls);
-    }
+	@Test
+	public void generateToken() {
+		Map<String, Object> claims = new HashMap<>();
+		claims.put("sub", "username");
+		claims.put("created", new Date());
+		String token = jwtUtil.generateToken(claims);
+		JwtUtilTest.log.info("测试token为：{}", token);
+	}
+
+	@Test
+	public void ignoreUrlsConfig() {
+		List<String> urls = ignoreUrlsConfig.getUrls();
+		System.out.println(urls);
+	}
 }

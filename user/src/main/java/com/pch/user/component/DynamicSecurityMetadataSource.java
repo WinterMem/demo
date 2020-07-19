@@ -1,13 +1,13 @@
 package com.pch.user.component;
 
-import cn.hutool.core.util.URLUtil;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+
+import cn.hutool.core.util.URLUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
@@ -21,45 +21,46 @@ import org.springframework.util.PathMatcher;
  */
 public class DynamicSecurityMetadataSource implements SecurityMetadataSource {
 
-    private static Map<String, ConfigAttribute> configAttributeMap = null;
-    @Autowired
-    private DynamicSecurityService dynamicSecurityService;
+	private static Map<String, ConfigAttribute> configAttributeMap = null;
 
-    @PostConstruct
-    public void loadDataSource() {
-        configAttributeMap = dynamicSecurityService.loadDataSource();
-    }
+	@Autowired
+	private DynamicSecurityService dynamicSecurityService;
 
-    public void clearDataSource() {
-        configAttributeMap.clear();
-        configAttributeMap = null;
-    }
+	@PostConstruct
+	public void loadDataSource() {
+		DynamicSecurityMetadataSource.configAttributeMap = dynamicSecurityService.loadDataSource();
+	}
 
-    @Override
-    public Collection<ConfigAttribute> getAttributes(Object o) throws IllegalArgumentException {
-        if (configAttributeMap == null) this.loadDataSource();
-        List<ConfigAttribute> configAttributes = new ArrayList<>();
-        //获取当前访问的路径
-        String url = ((FilterInvocation) o).getRequestUrl();
-        String path = URLUtil.getPath(url);
-        PathMatcher pathMatcher = new AntPathMatcher();
-        //获取访问该路径所需资源
-        for (String pattern : configAttributeMap.keySet()) {
-            if (pathMatcher.match(pattern, path)) {
-                configAttributes.add(configAttributeMap.get(pattern));
-            }
-        }
-        // 未设置操作请求权限，返回空集合
-        return configAttributes;
-    }
+	public void clearDataSource() {
+		DynamicSecurityMetadataSource.configAttributeMap.clear();
+		DynamicSecurityMetadataSource.configAttributeMap = null;
+	}
 
-    @Override
-    public Collection<ConfigAttribute> getAllConfigAttributes() {
-        return null;
-    }
+	@Override
+	public Collection<ConfigAttribute> getAttributes(Object o) throws IllegalArgumentException {
+		if (DynamicSecurityMetadataSource.configAttributeMap == null) this.loadDataSource();
+		List<ConfigAttribute> configAttributes = new ArrayList<>();
+		//获取当前访问的路径
+		String url = ((FilterInvocation) o).getRequestUrl();
+		String path = URLUtil.getPath(url);
+		PathMatcher pathMatcher = new AntPathMatcher();
+		//获取访问该路径所需资源
+		for (String pattern : DynamicSecurityMetadataSource.configAttributeMap.keySet()) {
+			if (pathMatcher.match(pattern, path)) {
+				configAttributes.add(DynamicSecurityMetadataSource.configAttributeMap.get(pattern));
+			}
+		}
+		// 未设置操作请求权限，返回空集合
+		return configAttributes;
+	}
 
-    @Override
-    public boolean supports(Class<?> aClass) {
-        return true;
-    }
+	@Override
+	public Collection<ConfigAttribute> getAllConfigAttributes() {
+		return null;
+	}
+
+	@Override
+	public boolean supports(Class<?> aClass) {
+		return true;
+	}
 }

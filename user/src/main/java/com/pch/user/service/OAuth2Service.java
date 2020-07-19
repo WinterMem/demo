@@ -8,13 +8,12 @@ import com.pch.user.po.oauth2.OAuth2AccessTokenPO;
  */
 public interface OAuth2Service {
 
-    /**
-     * 根据用户信息创建token
-     *
-     * @param oauth2CreateTokenDTO 用户信息
-     * @return refreshToken
-     */
-    OAuth2AccessTokenPO createToken(OAuth2CreateTokenDTO oauth2CreateTokenDTO);
-
+	/**
+	 * 根据用户信息创建token
+	 *
+	 * @param oauth2CreateTokenDTO 用户信息
+	 * @return refreshToken
+	 */
+	OAuth2AccessTokenPO createToken(OAuth2CreateTokenDTO oauth2CreateTokenDTO);
 
 }
