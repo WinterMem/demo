@@ -1,7 +1,6 @@
 package com.pch.user.po;
 
 import java.io.Serializable;
-
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -12,24 +11,24 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class CommodityPO implements Serializable {
 
-	private static final long serialVersionUID = 5788523262610242095L;
+    private static final long serialVersionUID = 5788523262610242095L;
 
-	private Integer id;
+    private Long id;
 
-	/**
-	 * 商品名称
-	 */
-	private String name;
+    /**
+     * 商品名称
+     */
+    private String name;
 
-	/**
-	 * 商品价格
-	 */
-	private Double price;
+    /**
+     * 商品价格
+     */
+    private Double price;
 
-	/**
-	 * 库存
-	 */
-	private Integer reserve;
+    /**
+     * 库存
+     */
+    private Integer reserve;
 
 //    privat
 }

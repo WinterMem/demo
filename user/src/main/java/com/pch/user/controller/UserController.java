@@ -5,7 +5,6 @@ import com.pch.user.dto.UserDTO;
 import com.pch.user.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
@@ -19,26 +18,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/user")
 public class UserController {
 
-	@Value("${jwt.tokenHeader}")
-	private String tokenHeader;
+    @Value("${jwt.tokenHeader}")
+    private String tokenHeader;
 
-	@Value("${jwt.tokenHead}")
-	private String tokenHead;
+    @Value("${jwt.tokenHead}")
+    private String tokenHead;
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	@ApiOperation(value = "用户登录", notes = "根据用户id修改密码")
-	@PostMapping("/login")
-	public CommonResult<String> login(@RequestBody @Validated UserDTO userDTO) {
-		String token = userService.login(userDTO);
-		return CommonResult.success(token);
-	}
+    @ApiOperation(value = "用户登录", notes = "根据用户id修改密码")
+    @PostMapping("/login")
+    public CommonResult<String> login(@RequestBody @Validated UserDTO userDTO) {
+        String token = userService.login(userDTO);
+        return CommonResult.success(token);
+    }
 
-	@ApiOperation(value = "用户登录", notes = "根据用户id修改密码")
-	@PostMapping("/insert")
-	public CommonResult<Integer> insert(@Validated @RequestBody UserDTO userDTO) {
-		return CommonResult.success(userService.insertUser(userDTO));
-	}
+    @ApiOperation(value = "用户登录", notes = "根据用户id修改密码")
+    @PostMapping("/register")
+    public CommonResult<Long> register(@Validated @RequestBody UserDTO userDTO) {
+        return CommonResult.success(userService.register(userDTO));
+    }
 
 }
