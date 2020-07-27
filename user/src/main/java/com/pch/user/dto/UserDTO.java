@@ -1,9 +1,12 @@
 package com.pch.user.dto;
 
-import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -16,16 +19,14 @@ public class UserDTO implements Serializable {
 
     private static final long serialVersionUID = -3588681970139736184L;
 
-    /**
-     * 用户名
-     */
     @ApiModelProperty("用户名")
     @NotEmpty(message = "用户名不能为空")
     private String username;
 
-    /**
-     * 电话号码
-     */
+    @ApiModelProperty("密码")
+    @NotBlank(message = "密码不能为空")
+    private String password;
+
     @ApiModelProperty("电话号码")
     private String telephone;
 

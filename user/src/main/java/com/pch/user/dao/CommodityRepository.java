@@ -5,7 +5,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CommodityMapper extends PagingAndSortingRepository<CommodityPO, Long> {
+public interface CommodityRepository extends PagingAndSortingRepository<CommodityPO, Long> {
 
 
 }

@@ -2,21 +2,29 @@ package com.pch.user.po;
 
 import java.io.Serializable;
 import java.util.Date;
-
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * 角色bo
  *
  * @Author: pch
  */
-@Getter
-@Setter
+@Data
+@Entity
+@Accessors(chain = true)
+@Table(name = "tb_role")
 public class RolePO implements Serializable {
 
 	private static final long serialVersionUID = -4919650087858107971L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	/**

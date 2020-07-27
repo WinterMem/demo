@@ -1,18 +1,20 @@
 package com.pch.user.service.impl;
 
+import java.util.Optional;
+
 import com.pch.user.constant.SysState;
 import com.pch.user.convert.UserConvert;
-import com.pch.user.dao.UserMapper;
+import com.pch.user.dao.UserRepository;
 import com.pch.user.dto.UserDTO;
 import com.pch.user.exception.ServiceException;
 import com.pch.user.po.MyUserDetails;
 import com.pch.user.po.UserPO;
 import com.pch.user.service.UserService;
-import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -20,11 +22,14 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserMapper userMapper;
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        Optional<UserPO> userPO = userMapper.findByLoginName(username);
+        Optional<UserPO> userPO = userRepository.findByLoginName(username);
         if (userPO.isPresent()) {
             throw new UsernameNotFoundException("用户名或密码错误");
         }
@@ -39,12 +44,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Long register(UserDTO userDTO) {
-        Integer count = userMapper.countByEmailOrTelephone(userDTO.getEmail(),
+        Integer count = userRepository.countByEmailOrTelephone(userDTO.getEmail(),
                 userDTO.getTelephone());
         if (count > 1) {
             throw new ServiceException(SysState.user_exist);
         }
-        UserPO save = userMapper.save(UserConvert.INSTANCE.userDtoToPoConvert(userDTO));
+        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        UserPO save = userRepository.save(UserConvert.INSTANCE.userDtoToPoConvert(userDTO));
         return save.getId();
     }
 }
