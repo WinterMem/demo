@@ -1,7 +1,6 @@
 package com.pch.user.task;
 
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
@@ -16,8 +15,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServerTask {
 
-	@Autowired
-	private SimpMessagingTemplate simpMessagingTemplate;
+    @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;
 
 //    @Scheduled(fixedRate = 1000)
 //    public void serverSendMsgToClient() {

@@ -1,6 +1,7 @@
 package com.pch.user.common;
 
 import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +33,7 @@ public class CommonResult<T> implements Serializable {
      */
     public static <T> CommonResult<T> success(T data) {
         return new CommonResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(),
-            data);
+                data);
     }
 
     /**
@@ -40,7 +41,7 @@ public class CommonResult<T> implements Serializable {
      */
     public static <T> CommonResult<T> success() {
         return new CommonResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(),
-            null);
+                null);
     }
 
     /**
@@ -109,7 +110,7 @@ public class CommonResult<T> implements Serializable {
      */
     public static <T> CommonResult<T> unauthorized(T data) {
         return new CommonResult<T>(ResultCode.UNAUTHORIZED.getCode(),
-            ResultCode.UNAUTHORIZED.getMessage(), data);
+                ResultCode.UNAUTHORIZED.getMessage(), data);
     }
 
     /**
@@ -117,7 +118,7 @@ public class CommonResult<T> implements Serializable {
      */
     public static <T> CommonResult<T> forbidden(T data) {
         return new CommonResult<T>(ResultCode.FORBIDDEN.getCode(),
-            ResultCode.FORBIDDEN.getMessage(), data);
+                ResultCode.FORBIDDEN.getMessage(), data);
     }
 
     public long getCode() {

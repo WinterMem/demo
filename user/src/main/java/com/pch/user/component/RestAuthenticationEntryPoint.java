@@ -6,12 +6,10 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.hutool.json.JSONUtil;
+import com.pch.user.common.CommonResult;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
-
-import com.pch.user.common.CommonResult;
-
-import cn.hutool.json.JSONUtil;
 
 /**
  * 自定义返回结果：未登录或登录过期 Created by macro on 2018/5/14.

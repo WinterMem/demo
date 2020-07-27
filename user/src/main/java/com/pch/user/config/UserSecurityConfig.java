@@ -5,7 +5,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.pch.user.component.DynamicSecurityService;
 import com.pch.user.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,25 +21,25 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class UserSecurityConfig extends SecurityConfig {
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	@Bean
-	public UserDetailsService userDetailsService() {
+    @Bean
+    public UserDetailsService userDetailsService() {
 //        获取登录用户信息
-		return username -> userService.loadUserByUsername(username);
-	}
+        return username -> userService.loadUserByUsername(username);
+    }
 
-	@Bean
-	public DynamicSecurityService dynamicSecurityService() {
-		return () -> {
-			Map<String, ConfigAttribute> map = new ConcurrentHashMap<>();
+    @Bean
+    public DynamicSecurityService dynamicSecurityService() {
+        return () -> {
+            Map<String, ConfigAttribute> map = new ConcurrentHashMap<>();
 //                List<UmsResource> resourceList = resourceService.listAll();
 //                for (UmsResource resource : resourceList) {
 //                    map.put(resource.getUrl(), new org.springframework.security.access.SecurityConfig(resource.getId() + ":" + resource.getName()));
 //                }
-			return map;
-		};
-	}
+            return map;
+        };
+    }
 
 }

@@ -8,8 +8,7 @@ public enum SysState {
     upload_err(1000L, "上传失败"),
 
     /*** user相关service错误编码 */
-    user_exist(40000001L, "改登录名已存在")
-    ;
+    user_exist(40000001L, "改登录名已存在");
 
     private final Long code;
 

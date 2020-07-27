@@ -6,8 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * <p>
- *     spring 各种监听器{@link ApplicationPreparedEvent}
- *     {@link ApplicationReadyEvent}
+ * spring 各种监听器{@link ApplicationPreparedEvent} {@link ApplicationReadyEvent}
  * </p>
  *
  * @author pch

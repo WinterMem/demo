@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import cn.hutool.json.JSONUtil;
 import com.pch.user.common.CommonResult;
-
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
@@ -16,15 +15,15 @@ import org.springframework.security.web.access.AccessDeniedHandler;
  */
 public class RestfulAccessDeniedHandler implements AccessDeniedHandler {
 
-	@Override
-	public void handle(HttpServletRequest request,
-			HttpServletResponse response,
-			AccessDeniedException e) throws IOException {
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Cache-Control", "no-cache");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json");
-		response.getWriter().println(JSONUtil.parse(CommonResult.forbidden(e.getMessage())));
-		response.getWriter().flush();
-	}
+    @Override
+    public void handle(HttpServletRequest request,
+            HttpServletResponse response,
+            AccessDeniedException e) throws IOException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        response.getWriter().println(JSONUtil.parse(CommonResult.forbidden(e.getMessage())));
+        response.getWriter().flush();
+    }
 }

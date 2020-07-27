@@ -1,18 +1,20 @@
 package com.pch.user.controller;
 
-import static com.pch.user.common.CommonResult.success;
+import java.util.List;
+
+import javax.validation.Valid;
 
 import com.pch.user.common.CommonResult;
 import com.pch.user.dto.CommodityDto;
 import com.pch.user.service.CommodityService;
-import java.util.List;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static com.pch.user.common.CommonResult.success;
 
 @RestController
 @RequestMapping("/commodity")
