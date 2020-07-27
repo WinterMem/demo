@@ -2,11 +2,13 @@ package com.pch.user.po;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -21,30 +23,30 @@ import lombok.experimental.Accessors;
 @Table(name = "tb_role")
 public class RolePO implements Serializable {
 
-	private static final long serialVersionUID = -4919650087858107971L;
+    private static final long serialVersionUID = -4919650087858107971L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	/**
-	 * 角色名称
-	 */
-	private String roleName;
+    /**
+     * 角色名称
+     */
+    private String roleName;
 
-	/**
-	 * 描述
-	 */
-	private String description;
+    /**
+     * 描述
+     */
+    private String description;
 
-	/**
-	 * 创建时间
-	 */
-	private Date createTime;
+    /**
+     * 创建时间
+     */
+    private Date createTime;
 
-	/**
-	 * 关联人数
-	 */
-	private Integer adminCount;
+    /**
+     * 关联人数
+     */
+    private Integer adminCount;
 
 }

@@ -23,7 +23,7 @@ public class CommodityPO implements Serializable {
     private static final long serialVersionUID = 5788523262610242095L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
