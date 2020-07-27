@@ -46,7 +46,8 @@ secure:
       - /swagger-ui.html
       - /swagger-resources/**
       - /swagger/**
-      - /**/register
+      - /user/register
+      - /user/login
 #      - /**/v2/api-docs
 #      - /**/*.js
 #      - /**/*.css
