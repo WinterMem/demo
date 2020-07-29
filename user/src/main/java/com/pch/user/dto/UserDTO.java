@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -19,8 +18,11 @@ public class UserDTO implements Serializable {
 
     private static final long serialVersionUID = -3588681970139736184L;
 
+    @ApiModelProperty("登录名称")
+    @NotBlank
+    private String loginName;
+
     @ApiModelProperty("用户名")
-    @NotEmpty(message = "用户名不能为空")
     private String username;
 
     @ApiModelProperty("密码")
