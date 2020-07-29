@@ -8,7 +8,9 @@ public enum SysState {
     upload_err(1000L, "上传失败"),
 
     /*** user相关service错误编码 */
-    user_exist(40000001L, "登录名已存在");
+    user_exist(40000001L, "登录名已存在"),
+    user_telephone_exist(40000002L, "手机号已存在"),
+    user_email_exist(40000003L, "邮箱已存在");
 
     private final Long code;
 
@@ -28,7 +30,7 @@ public enum SysState {
     }
 
     public static SysState value(int code) {
-        for (SysState e : values()) {
+        for (SysState e : SysState.values()) {
             if (e.code == code) {
                 return e;
             }
@@ -37,7 +39,7 @@ public enum SysState {
     }
 
     public static SysState value(String message) {
-        for (SysState e : values()) {
+        for (SysState e : SysState.values()) {
             if (e.message.equals(message)) {
                 return e;
             }

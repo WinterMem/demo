@@ -4,7 +4,7 @@ package com.pch.user.common;
  * 枚举了一些常用API操作码
  */
 public enum ResultCode implements IErrorCode {
-    SUCCESS(200L, "操作成功"),
+    //    SUCCESS(200L, "操作成功"),
     FAILED(500L, "操作失败"),
     VALIDATE_FAILED(404L, "参数检验失败"),
     UNAUTHORIZED(401L, "暂未登录或token已经过期"),

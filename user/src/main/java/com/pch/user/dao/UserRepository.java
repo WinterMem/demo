@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends PagingAndSortingRepository<UserPO, Long> {
 
     Optional<UserPO> findByLoginName(String loginName);
+    
+    Integer countByEmail(String email);
 
-    Integer countByEmailOrTelephone(String email, String telephone);
+    Integer countByTelephone(String telephone);
 }

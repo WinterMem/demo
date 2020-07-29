@@ -44,10 +44,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Long register(UserDTO userDTO) {
-        Integer count = userRepository.countByEmailOrTelephone(userDTO.getEmail(),
-                userDTO.getTelephone());
-        if (count > 1) {
-            throw new ServiceException(SysState.user_exist);
+        Integer count = userRepository
+                .countByEmail(userDTO.getEmail() != null ? userDTO.getEmail() : "");
+        if (count > 0) {
+            throw new ServiceException(SysState.user_email_exist);
+        }
+        count = userRepository
+                .countByTelephone(userDTO.getTelephone() != null ? userDTO.getTelephone() : "");
+        if (count > 0) {
+            throw new ServiceException(SysState.user_telephone_exist);
         }
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         UserPO save = userRepository.save(UserConvert.INSTANCE.userDtoToPoConvert(userDTO));

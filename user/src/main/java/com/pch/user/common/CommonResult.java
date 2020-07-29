@@ -18,7 +18,7 @@ public class CommonResult<T> implements Serializable {
     /**
      * 成功返回编码
      */
-    private static final Integer SUCCESS_CODE = 0;
+    private static final Long SUCCESS_CODE = 0L;
 
     private Long code;
 
@@ -32,7 +32,7 @@ public class CommonResult<T> implements Serializable {
      * @param data 获取的数据
      */
     public static <T> CommonResult<T> success(T data) {
-        return new CommonResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(),
+        return new CommonResult<T>(CommonResult.SUCCESS_CODE, null,
                 data);
     }
 
@@ -40,7 +40,7 @@ public class CommonResult<T> implements Serializable {
      * 成功返回结果
      */
     public static <T> CommonResult<T> success() {
-        return new CommonResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(),
+        return new CommonResult<T>(CommonResult.SUCCESS_CODE, null,
                 null);
     }
 
@@ -51,7 +51,7 @@ public class CommonResult<T> implements Serializable {
      * @param message 提示信息
      */
     public static <T> CommonResult<T> success(T data, String message) {
-        return new CommonResult<T>(ResultCode.SUCCESS.getCode(), message, data);
+        return new CommonResult<T>(CommonResult.SUCCESS_CODE, message, data);
     }
 
     /**
@@ -86,14 +86,14 @@ public class CommonResult<T> implements Serializable {
      * 失败返回结果
      */
     public static <T> CommonResult<T> failed() {
-        return failed(ResultCode.FAILED);
+        return CommonResult.failed(ResultCode.FAILED);
     }
 
     /**
      * 参数验证失败返回结果
      */
     public static <T> CommonResult<T> validateFailed() {
-        return failed(ResultCode.VALIDATE_FAILED);
+        return CommonResult.failed(ResultCode.VALIDATE_FAILED);
     }
 
     /**

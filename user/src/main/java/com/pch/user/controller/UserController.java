@@ -30,8 +30,7 @@ public class UserController {
     @ApiOperation(value = "用户登录", notes = "根据用户id修改密码")
     @PostMapping("/login")
     public CommonResult<String> login(@RequestBody @Validated UserDTO userDTO) {
-        String token = userService.login(userDTO);
-        return CommonResult.success(token);
+        return CommonResult.success(userService.login(userDTO));
     }
 
     @ApiOperation(value = "用户登录", notes = "根据用户id修改密码")
