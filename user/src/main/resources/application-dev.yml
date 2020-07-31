@@ -28,3 +28,8 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.MySQL5Dialect
+  cache:
+    type: redis
+  redis:
+    redisson:
+      config: classpath:redisson.yml

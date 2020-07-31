@@ -28,6 +28,8 @@
     <com.mchange>0.9.5.4</com.mchange>
     <com.baomidou>3.3.2</com.baomidou>
     <com.alibaba.easyExcel>2.1.6</com.alibaba.easyExcel>
+    <springBoot.redissson>3.13.2</springBoot.redissson>
+    <org.redisson>3.13.2</org.redisson>
   </properties>
 
   <dependencies>
@@ -51,11 +53,30 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-jdbc</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.redisson</groupId>
+      <artifactId>redisson-spring-boot-starter</artifactId>
+      <version>${springBoot.redissson}</version>
+    </dependency>
     <!--		<dependency>-->
     <!--			<groupId>com.baomidou</groupId>-->
     <!--			<artifactId>mybatis-plus-boot-starter</artifactId>-->
     <!--			<version>${com.baomidou}</version>-->
     <!--		</dependency>-->
+    <dependency>
+      <groupId>org.redisson</groupId>
+      <artifactId>redisson-spring-boot-starter</artifactId>
+      <version>${org.redisson}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.redisson</groupId>
+      <artifactId>redisson-hibernate-53</artifactId>
+      <version>${org.redisson}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-pool2</artifactId>
+    </dependency>
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>easyexcel</artifactId>
