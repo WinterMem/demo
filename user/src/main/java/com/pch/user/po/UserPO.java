@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  *
@@ -18,6 +20,7 @@ import lombok.experimental.Accessors;
 @Entity
 @Accessors(chain = true)
 @Table(name = "tb_user")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class UserPO implements Serializable {
 
     private static final long serialVersionUID = -8692760072307721060L;

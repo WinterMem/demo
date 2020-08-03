@@ -1,0 +1,17 @@
+singleServerConfig:
+  address: redis://127.0.0.1:6379  #节点地址
+  password:
+  subscriptionConnectionMinimumIdleSize: 1 #发布和订阅连接的最小空闲连接数
+  subscriptionConnectionPoolSize: 50  #发布和订阅连接池大小
+  connectionMinimumIdleSize: 32 #最小空闲连接数
+  connectionPoolSize: 64 #连接池大小
+  database: 11 #数据库编号（0-16，默认是0）
+  #idleConnectionTimeout: 10000  #连接空闲超时，单位：毫秒
+  #connectTimeout: 10000 #连接超时，单位：毫秒
+  #timeout: 3000 #命令等待超时，单位：毫秒
+  #retryAttempts: 3 #命令失败重试次数
+  #retryInterval: 1500  #命令重试发送时间间隔，单位：毫秒
+threads: 0 #线程池数量
+nettyThreads: 0 #Netty线程池数量
+transportMode: NIO #传输模式
+codec: !<org.redisson.codec.SerializationCodec> {} #编码，这里使用的jdk序列化

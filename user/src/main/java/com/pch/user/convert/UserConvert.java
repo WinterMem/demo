@@ -1,5 +1,7 @@
 package com.pch.user.convert;
 
+import java.util.Optional;
+
 import com.pch.user.dto.UserDTO;
 import com.pch.user.po.UserPO;
 import org.mapstruct.Mapper;
@@ -12,7 +14,7 @@ public interface UserConvert {
     UserConvert INSTANCE = Mappers.getMapper(UserConvert.class);
 
     @Mappings({})
-    UserDTO UserDTOCovert(UserPO userPO);
+    UserDTO UserDTOCovert(Optional<UserPO> userPO);
 
     @Mappings({})
     UserPO userDtoToPoConvert(UserDTO userDTO);

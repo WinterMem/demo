@@ -8,14 +8,15 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(tags = "用户管理模块")
 @RestController
-@RequestMapping(value = "/user")
+//@RequestMapping(value = "")
 public class UserController {
 
     @Value("${jwt.tokenHeader}")
@@ -27,14 +28,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    //    @ApiModelProperty(value = )
+    @GetMapping("/user/{id}")
+    public CommonResult<UserDTO> findById(@PathVariable Long id) {
+        return CommonResult.success(userService.findById(id).get());
+    }
+
     @ApiOperation(value = "用户登录", notes = "根据用户id修改密码")
-    @PostMapping("/login")
+    @PostMapping("/user/login")
     public CommonResult<String> login(@RequestBody @Validated UserDTO userDTO) {
         return CommonResult.success(userService.login(userDTO));
     }
 
     @ApiOperation(value = "用户登录", notes = "根据用户id修改密码")
-    @PostMapping("/register")
+    @PostMapping("/user/register")
     public CommonResult<Long> register(@Validated @RequestBody UserDTO userDTO) {
         return CommonResult.success(userService.register(userDTO));
     }

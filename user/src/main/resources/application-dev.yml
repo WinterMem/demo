@@ -1,5 +1,7 @@
 # datasource
 spring:
+  profiles:
+    include: jpa
   datasource:
     url: jdbc:mysql://localhost:3306/demo?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT
     username: root
@@ -18,18 +20,16 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-  jpa:
-    show-sql: true
-    open-in-view: false
-    hibernate:
-      ddl-auto: update
-    database: mysql
-    properties:
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQL5Dialect
+  jackson:
+    dateFormat: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: NON_NULL
   cache:
     type: redis
   redis:
     redisson:
       config: classpath:redisson.yml
+  http:
+    encoding:
+      charset: UTF-8
+      force: true

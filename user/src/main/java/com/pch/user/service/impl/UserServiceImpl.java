@@ -23,9 +23,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
+//    private UserConvert.INSTANCE
 
     @Override
     public UserDetails loadUserByUsername(String username) {
@@ -40,6 +40,13 @@ public class UserServiceImpl implements UserService {
     public String login(UserDTO userDTO) {
 
         return null;
+    }
+
+    @Override
+    public Optional<UserDTO> findById(Long id) {
+        Optional<UserPO> byId = userRepository.findById(id);
+
+        return byId.map(userPO -> UserConvert.INSTANCE.UserDTOCovert(byId));
     }
 
     @Override

@@ -1,0 +1,35 @@
+spring:
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+    open-in-view: false
+    properties: #使用redisson做二级缓存，项目地址：https://github.com/redisson/redisson
+      hibernate.format_sql: true
+      hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+      hibernate.cache.region.factory_class: org.redisson.hibernate.RedissonRegionFactory
+      hibernate.cache.use_second_level_cache: true #启用二级缓存
+      hibernate.cache.use_query_cache: true #启用查询缓存
+      javax.persistence.sharedCache.mode: ENABLE_SELECTIVE
+      hibernate.cache.redisson.fallback: true #如果Redis缓存不可用，Redisson可以回退数据库
+      hibernate.cache.region_prefix: hibernate
+      #hibernate.cache.provider_configuration_file_resource_path: hibernate-redis.properties
+      hibernate.cache.redisson.config: redisson.yml
+      hibernate.cache.redisson.entity.eviction.max_entries: 2000 #最大个数
+      hibernate.cache.redisson.entity.expiration.time_to_live: 600000 #存活时间   0分钟
+      hibernate.cache.redisson.entity.expiration.max_idle_time: 300000 #最大空闲时间, 5分钟 如果间隔这么久都有再次被访问，那么就清除缓存
+
+      hibernate.cache.redisson.collection.eviction.max_entries: 10000
+      hibernate.cache.redisson.collection.expiration.time_to_live: 600000
+      hibernate.cache.redisson.collection.expiration.max_idle_time: 300000
+
+      hibernate.cache.redisson.naturalid.eviction.max_entries: 10000
+      hibernate.cache.redisson.naturalid.expiration.time_to_live: 600000
+      hibernate.cache.redisson.naturalid.expiration.max_idle_time: 300000
+
+      hibernate.cache.redisson.query.eviction.max_entries: 20000
+      hibernate.cache.redisson.query.expiration.time_to_live: 600000
+      hibernate.cache.redisson.query.expiration.max_idle_time: 300000
+
+      hibernate.cache.redisson.timestamps.eviction.max_entries: 10000
+      hibernate.cache.redisson.timestamps.expiration.time_to_live: 600000
+      hibernate.cache.redisson.timestamps.expiration.max_idle_time: 300000
