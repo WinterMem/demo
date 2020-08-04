@@ -3,8 +3,11 @@ package com.pch.user.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -22,25 +25,26 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableSwagger2
+@EnableKnife4j
+@Import(BeanValidatorPluginsConfiguration.class)
 public class Swagger2Config {
 
-    @Bean
-    public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.pch.user.controller"))
-                .paths(PathSelectors.any())
-                .build()
-                .securitySchemes(securitySchemes())
-                .securityContexts(securityContexts());
-    }
+//    @Bean
+//    public Docket createRestApi() {
+//        return new Docket(DocumentationType.SWAGGER_2)
+//                .apiInfo(apiInfo())
+//                .select()
+//                .apis(RequestHandlerSelectors.basePackage("com.pch.user.controller"))
+//                .paths(PathSelectors.any())
+//                .build()
+//                .securitySchemes(securitySchemes())
+//                .securityContexts(securityContexts());
+//    }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("www.baidu.com")
-                .description("user后台系统")
-                .termsOfServiceUrl("https://www.jianshu.com/p/8033ef83a8ed")
+                .title("pch")
+                .description("用户后台系统")
                 .version("1.0")
                 .build();
     }
@@ -51,6 +55,21 @@ public class Swagger2Config {
         ApiKey apiKey = new ApiKey("Authorization", "Authorization", "header");
         result.add(apiKey);
         return result;
+    }
+
+    @Bean(value = "defaultApi")
+    public Docket defaultApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                //分组名称
+                .groupName("user管理")
+                .select()
+                //这里指定Controller扫描包路径
+                .apis(RequestHandlerSelectors.basePackage("com.pch.user"))
+                .paths(PathSelectors.any())
+                .build();
+//                .securitySchemes(securitySchemes())
+//                .securityContexts(securityContexts());
     }
 
     private List<SecurityContext> securityContexts() {
