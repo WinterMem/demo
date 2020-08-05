@@ -20,7 +20,9 @@ secure:
       - /swagger-ui.html
       - /swagger-resources/**
       - /swagger/**
-      - /doc.html/**
+      - /doc.html
+      - /webjars/**
+      - /v2/api-docs
       - /user/register
       - /user/login
 #      - /**/v2/api-docs

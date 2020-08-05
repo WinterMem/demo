@@ -67,8 +67,8 @@ public class Swagger2Config {
                 //这里指定Controller扫描包路径
                 .apis(RequestHandlerSelectors.basePackage("com.pch.user"))
                 .paths(PathSelectors.any())
-                .build();
-//                .securitySchemes(securitySchemes())
+                .build()
+                .securitySchemes(securitySchemes());
 //                .securityContexts(securityContexts());
     }
 
