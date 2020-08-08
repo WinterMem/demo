@@ -2,20 +2,22 @@ package com.pch.user.service.impl;
 
 import java.util.Optional;
 
-import com.pch.user.constant.SysState;
-import com.pch.user.convert.UserConvert;
-import com.pch.user.dao.UserRepository;
-import com.pch.user.dto.UserDTO;
-import com.pch.user.exception.ServiceException;
-import com.pch.user.po.MyUserDetails;
-import com.pch.user.po.UserPO;
-import com.pch.user.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.pch.user.constant.SysState;
+import com.pch.user.convert.UserConvert;
+import com.pch.user.dao.UserRepository;
+import com.pch.user.dto.UserDto;
+import com.pch.user.exception.ServiceException;
+import com.pch.user.po.MyUserDetails;
+import com.pch.user.po.UserPo;
+import com.pch.user.service.UserService;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
@@ -29,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        Optional<UserPO> userPO = userRepository.findByLoginName(username);
+        Optional<UserPo> userPO = userRepository.findByLoginName(username);
         if (userPO.isPresent()) {
             throw new UsernameNotFoundException("用户名或密码错误");
         }
@@ -37,20 +39,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String login(UserDTO userDTO) {
+    public String login(UserDto userDTO) {
 
         return null;
     }
 
     @Override
-    public Optional<UserDTO> findById(Long id) {
-        Optional<UserPO> byId = userRepository.findById(id);
+    public Optional<UserDto> findById(Long id) {
+        Optional<UserPo> byId = userRepository.findById(id);
 
         return byId.map(userPO -> UserConvert.INSTANCE.UserDTOCovert(byId));
     }
 
     @Override
-    public Long register(UserDTO userDTO) {
+    public Long register(UserDto userDTO) {
         Integer count = userRepository
                 .countByEmail(userDTO.getEmail() != null ? userDTO.getEmail() : "");
         if (count > 0) {
@@ -62,7 +64,7 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(SysState.user_telephone_exist);
         }
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        UserPO save = userRepository.save(UserConvert.INSTANCE.userDtoToPoConvert(userDTO));
+        UserPo save = userRepository.save(UserConvert.INSTANCE.userDtoToPoConvert(userDTO));
         return save.getId();
     }
 }

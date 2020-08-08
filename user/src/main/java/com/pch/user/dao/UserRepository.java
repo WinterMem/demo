@@ -2,14 +2,14 @@ package com.pch.user.dao;
 
 import java.util.Optional;
 
-import com.pch.user.po.UserPO;
+import com.pch.user.po.UserPo;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends PagingAndSortingRepository<UserPO, Long> {
+public interface UserRepository extends PagingAndSortingRepository<UserPo, Long> {
 
-    Optional<UserPO> findByLoginName(String loginName);
+    Optional<UserPo> findByLoginName(String loginName);
     
     Integer countByEmail(String email);
 

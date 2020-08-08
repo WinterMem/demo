@@ -3,7 +3,7 @@ package com.pch.user.convert;
 import java.util.List;
 
 import com.pch.user.dto.CommodityDto;
-import com.pch.user.po.CommodityPO;
+import com.pch.user.po.CommodityPo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
@@ -23,7 +23,7 @@ public interface CommodityConvert {
      * @return dto list集合
      */
     @Mappings({})
-    List<CommodityDto> COMMODITY_DTO_LIST(Iterable<CommodityPO> commodityPOList);
+    List<CommodityDto> COMMODITY_DTO_LIST(Iterable<CommodityPo> commodityPOList);
 
     /**
      * dto => po
@@ -32,5 +32,5 @@ public interface CommodityConvert {
      * @return po实例
      */
     @Mappings({})
-    CommodityPO COMMODITY_PO(CommodityDto commodityDto);
+    CommodityPo COMMODITY_PO(CommodityDto commodityDto);
 }

@@ -1,9 +1,10 @@
 package com.pch.user.service;
 
-import com.pch.user.UserApplicationTests;
-import com.pch.user.dto.UserDTO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.pch.user.UserApplicationTests;
+import com.pch.user.dto.UserDto;
 
 /**
  * @author: pch
@@ -17,7 +18,7 @@ public class UserServiceTest extends UserApplicationTests {
 
     @Test
     public void register() {
-        UserDTO userDTO = new UserDTO().setPassword("fire").setUsername("fire").setTelephone("177");
+        UserDto userDTO = new UserDto().setPassword("fire").setUsername("fire").setTelephone("177");
         userService.register(userDTO);
     }
 }

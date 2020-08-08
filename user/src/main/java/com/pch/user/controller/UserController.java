@@ -1,7 +1,7 @@
 package com.pch.user.controller;
 
 import com.pch.user.common.CommonResult;
-import com.pch.user.dto.UserDTO;
+import com.pch.user.dto.UserDto;
 import com.pch.user.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -30,19 +30,19 @@ public class UserController {
 
     //    @ApiModelProperty(value = )
     @GetMapping("/user/{id}")
-    public CommonResult<UserDTO> findById(@PathVariable Long id) {
+    public CommonResult<UserDto> findById(@PathVariable Long id) {
         return CommonResult.success(userService.findById(id).get());
     }
 
     @ApiOperation(value = "用户登录", notes = "根据用户id修改密码")
     @PostMapping("/user/login")
-    public CommonResult<String> login(@RequestBody @Validated UserDTO userDTO) {
+    public CommonResult<String> login(@RequestBody @Validated UserDto userDTO) {
         return CommonResult.success(userService.login(userDTO));
     }
 
     @ApiOperation(value = "用户登录", notes = "根据用户id修改密码")
     @PostMapping("/user/register")
-    public CommonResult<Long> register(@Validated @RequestBody UserDTO userDTO) {
+    public CommonResult<Long> register(@Validated @RequestBody UserDto userDTO) {
         return CommonResult.success(userService.register(userDTO));
     }
 

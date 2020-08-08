@@ -6,15 +6,19 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
  *
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
-public class UserDTO implements Serializable {
+public class UserDto implements Serializable {
 
     private static final long serialVersionUID = -3588681970139736184L;
 

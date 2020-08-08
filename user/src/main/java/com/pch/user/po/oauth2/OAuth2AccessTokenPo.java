@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class OAuth2AccessTokenPO implements Serializable {
+public class OAuth2AccessTokenPo implements Serializable {
 
 	private static final long serialVersionUID = 7498482891757847887L;
 

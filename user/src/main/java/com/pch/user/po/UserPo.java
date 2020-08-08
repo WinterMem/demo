@@ -21,7 +21,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Accessors(chain = true)
 @Table(name = "tb_user")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class UserPO implements Serializable {
+public class UserPo implements Serializable {
 
     private static final long serialVersionUID = -8692760072307721060L;
 

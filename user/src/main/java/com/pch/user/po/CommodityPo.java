@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Entity
 @Accessors(chain = true)
 @Table(name = "tb_commodity")
-public class CommodityPO implements Serializable {
+public class CommodityPo implements Serializable {
 
     private static final long serialVersionUID = 5788523262610242095L;
 

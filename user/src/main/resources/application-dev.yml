@@ -29,7 +29,3 @@ spring:
   redis:
     redisson:
       config: classpath:redisson.yml
-  http:
-    encoding:
-      charset: UTF-8
-      force: true

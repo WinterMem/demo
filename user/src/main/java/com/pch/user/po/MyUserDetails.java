@@ -13,13 +13,13 @@ public class MyUserDetails implements UserDetails {
 
     private static final long serialVersionUID = 5528182141133050123L;
 
-    private UserPO userPO;
+    private UserPo userPO;
 
-    private List<RolePO> rolePOS;
+    private List<RolePo> rolePos;
 
-    public MyUserDetails(UserPO userPO, List<RolePO> rolePOS) {
+    public MyUserDetails(UserPo userPO, List<RolePo> rolePos) {
         this.userPO = userPO;
-        this.rolePOS = rolePOS;
+        this.rolePos = rolePos;
     }
 
 

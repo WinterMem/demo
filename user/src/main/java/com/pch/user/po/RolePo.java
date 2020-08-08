@@ -21,7 +21,7 @@ import lombok.experimental.Accessors;
 @Entity
 @Accessors(chain = true)
 @Table(name = "tb_role")
-public class RolePO implements Serializable {
+public class RolePo implements Serializable {
 
     private static final long serialVersionUID = -4919650087858107971L;
 

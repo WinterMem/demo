@@ -23,7 +23,7 @@
     <auth0.version>3.4.0</auth0.version>
     <mybatis.version>2.1.1</mybatis.version>
     <springfox.varsion>2.9.2</springfox.varsion>
-    <commons.version>3.4</commons.version>
+    <commons.version>3.10</commons.version>
     <mchange.varsion>0.9.5.4</mchange.varsion>
     <baomidou.version>3.3.2</baomidou.version>
     <easyExcel.version>2.1.6</easyExcel.version>
