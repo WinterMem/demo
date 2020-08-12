@@ -29,6 +29,7 @@
     <easyExcel.version>2.1.6</easyExcel.version>
     <redisson.version>3.13.2</redisson.version>
     <knife4j.version>2.0.4</knife4j.version>
+    <beanUtils.version>1.9.3</beanUtils.version>
   </properties>
 
   <dependencies>
@@ -71,6 +72,7 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-pool2</artifactId>
     </dependency>
+
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>easyexcel</artifactId>
@@ -187,6 +189,12 @@
       <artifactId>commons-lang3</artifactId>
       <version>${commons.version}</version>
     </dependency>
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <version>${beanUtils.version}</version>
+    </dependency>
+
 
   </dependencies>
 
