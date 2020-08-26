@@ -1,3 +1,11 @@
-/.idea/
-/user/user.iml
-/user/target/
+# Maven #
+target/
+
+# IDEA #
+.idea/
+*.iml
+
+# Eclipse #
+.settings/
+.classpath
+.project
