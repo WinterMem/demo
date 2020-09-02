@@ -16,7 +16,7 @@ public enum SysState {
 
     private final String message;
 
-    private SysState(Long code, String message) {
+    SysState(Long code, String message) {
         this.code = code;
         this.message = message;
     }

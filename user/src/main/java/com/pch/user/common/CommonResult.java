@@ -32,7 +32,7 @@ public class CommonResult<T> implements Serializable {
      * @param data 获取的数据
      */
     public static <T> CommonResult<T> success(T data) {
-        return new CommonResult<T>(CommonResult.SUCCESS_CODE, null,
+        return new CommonResult<>(CommonResult.SUCCESS_CODE, null,
                 data);
     }
 
@@ -40,7 +40,7 @@ public class CommonResult<T> implements Serializable {
      * 成功返回结果
      */
     public static <T> CommonResult<T> success() {
-        return new CommonResult<T>(CommonResult.SUCCESS_CODE, null,
+        return new CommonResult<>(CommonResult.SUCCESS_CODE, null,
                 null);
     }
 
@@ -51,7 +51,7 @@ public class CommonResult<T> implements Serializable {
      * @param message 提示信息
      */
     public static <T> CommonResult<T> success(T data, String message) {
-        return new CommonResult<T>(CommonResult.SUCCESS_CODE, message, data);
+        return new CommonResult<>(CommonResult.SUCCESS_CODE, message, data);
     }
 
     /**
@@ -60,7 +60,7 @@ public class CommonResult<T> implements Serializable {
      * @param errorCode 错误码
      */
     public static <T> CommonResult<T> failed(IErrorCode errorCode) {
-        return new CommonResult<T>(errorCode.getCode(), errorCode.getMessage(), null);
+        return new CommonResult<>(errorCode.getCode(), errorCode.getMessage(), null);
     }
 
     /**
@@ -70,7 +70,7 @@ public class CommonResult<T> implements Serializable {
      * @param message   错误信息
      */
     public static <T> CommonResult<T> failed(Long errorCode, String message) {
-        return new CommonResult<T>(errorCode, message, null);
+        return new CommonResult<>(errorCode, message, null);
     }
 
     /**
@@ -79,7 +79,7 @@ public class CommonResult<T> implements Serializable {
      * @param message 提示信息
      */
     public static <T> CommonResult<T> failed(String message) {
-        return new CommonResult<T>(ResultCode.FAILED.getCode(), message, null);
+        return new CommonResult<>(ResultCode.FAILED.getCode(), message, null);
     }
 
     /**
@@ -102,14 +102,14 @@ public class CommonResult<T> implements Serializable {
      * @param message 提示信息
      */
     public static <T> CommonResult<T> validateFailed(String message) {
-        return new CommonResult<T>(ResultCode.VALIDATE_FAILED.getCode(), message, null);
+        return new CommonResult<>(ResultCode.VALIDATE_FAILED.getCode(), message, null);
     }
 
     /**
      * 未登录返回结果
      */
     public static <T> CommonResult<T> unauthorized(T data) {
-        return new CommonResult<T>(ResultCode.UNAUTHORIZED.getCode(),
+        return new CommonResult<>(ResultCode.UNAUTHORIZED.getCode(),
                 ResultCode.UNAUTHORIZED.getMessage(), data);
     }
 
@@ -117,7 +117,7 @@ public class CommonResult<T> implements Serializable {
      * 未授权返回结果
      */
     public static <T> CommonResult<T> forbidden(T data) {
-        return new CommonResult<T>(ResultCode.FORBIDDEN.getCode(),
+        return new CommonResult<>(ResultCode.FORBIDDEN.getCode(),
                 ResultCode.FORBIDDEN.getMessage(), data);
     }
 

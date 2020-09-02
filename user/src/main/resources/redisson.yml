@@ -1,5 +1,5 @@
 singleServerConfig:
-  address: redis://127.0.0.1:6379  #节点地址
+  address: redis://192.168.1.54:6379  #节点地址
   password:
   subscriptionConnectionMinimumIdleSize: 1 #发布和订阅连接的最小空闲连接数
   subscriptionConnectionPoolSize: 50  #发布和订阅连接池大小
