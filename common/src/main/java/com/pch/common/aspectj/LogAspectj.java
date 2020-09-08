@@ -1,4 +1,4 @@
-package com.pch.user.aspectj;
+package com.pch.common.aspectj;
 
 import java.util.Objects;
 
@@ -12,7 +12,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -24,8 +24,8 @@ import lombok.extern.slf4j.Slf4j;
  * @author pch
  */
 @Aspect
-@Component
 @Slf4j
+@Configuration
 public class LogAspectj {
 
     private static final String START_TIME = "request-start";
@@ -33,7 +33,7 @@ public class LogAspectj {
     /**
      * 切入点
      */
-    @Pointcut("execution(public * com.pch.user.controller.*Controller.*(..))")
+    @Pointcut("execution(public * com.pch.*.controller.*Controller.*(..))")
     public void log() {
 
     }

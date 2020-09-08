@@ -1,4 +1,4 @@
-package com.pch.user.cors;
+package com.pch.security.component;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

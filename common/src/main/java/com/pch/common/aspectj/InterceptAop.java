@@ -1,19 +1,16 @@
-package com.pch.user.aspectj;
+package com.pch.common.aspectj;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.stereotype.Component;
-
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Configuration;
 
 @Aspect
-@Component
-@Slf4j
+@Configuration
 public class InterceptAop {
 
-	@Pointcut("@annotation(com.pch.user.annotation.Log)")
+	@Pointcut("@annotation(com.pch.common.annotation.Log)")
 	public void annotationAop() {
 	}
 
