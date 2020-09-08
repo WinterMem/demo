@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pch.user.UserApplicationTests;
 import com.pch.user.dao.UserRepository;
-import com.pch.user.dto.UserDto;
-import com.pch.user.po.UserPo;
+import com.pch.user.model.dto.UserDto;
+import com.pch.user.model.po.UserPo;
 
 /**
  * @author: pch

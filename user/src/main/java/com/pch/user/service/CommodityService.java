@@ -2,7 +2,7 @@ package com.pch.user.service;
 
 import java.util.List;
 
-import com.pch.user.dto.CommodityDto;
+import com.pch.user.model.dto.CommodityDto;
 
 public interface CommodityService {
 

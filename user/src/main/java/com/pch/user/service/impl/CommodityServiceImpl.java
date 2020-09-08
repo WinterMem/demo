@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.pch.user.convert.CommodityConvert;
 import com.pch.user.dao.CommodityRepository;
-import com.pch.user.dto.CommodityDto;
-import com.pch.user.po.CommodityPo;
+import com.pch.user.model.dto.CommodityDto;
+import com.pch.user.model.po.CommodityPo;
 import com.pch.user.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

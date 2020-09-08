@@ -6,7 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.pch.user.dto.UserDto;
+import com.pch.user.model.dto.UserDto;
 
 public interface UserService {
 

@@ -13,7 +13,7 @@ spring:
       hibernate.cache.redisson.fallback: true #如果Redis缓存不可用，Redisson可以回退数据库
       hibernate.cache.region_prefix: hibernate
       #hibernate.cache.provider_configuration_file_resource_path: hibernate-redis.properties
-      hibernate.cache.redisson.config: redisson.yml
+      hibernate.cache.redisson.config: application-redisson.yml
       hibernate.cache.redisson.entity.eviction.max_entries: 2000 #最大个数
       hibernate.cache.redisson.entity.expiration.time_to_live: 600000 #存活时间   0分钟
       hibernate.cache.redisson.entity.expiration.max_idle_time: 300000 #最大空闲时间, 5分钟 如果间隔这么久都有再次被访问，那么就清除缓存

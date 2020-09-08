@@ -8,13 +8,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.pch.user.constant.SysState;
+import com.pch.common.constant.SysState;
 import com.pch.user.convert.UserConvert;
 import com.pch.user.dao.UserRepository;
-import com.pch.user.dto.UserDto;
-import com.pch.user.exception.ServiceException;
-import com.pch.user.po.MyUserDetails;
-import com.pch.user.po.UserPo;
+import com.pch.user.model.dto.UserDto;
+import com.pch.common.exception.ServiceException;
+import com.pch.user.model.po.MyUserDetails;
+import com.pch.user.model.po.UserPo;
 import com.pch.user.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;

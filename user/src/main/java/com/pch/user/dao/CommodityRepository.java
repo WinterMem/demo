@@ -1,6 +1,6 @@
 package com.pch.user.dao;
 
-import com.pch.user.po.CommodityPo;
+import com.pch.user.model.po.CommodityPo;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

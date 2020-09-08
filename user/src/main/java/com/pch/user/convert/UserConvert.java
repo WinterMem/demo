@@ -2,8 +2,8 @@ package com.pch.user.convert;
 
 import java.util.Optional;
 
-import com.pch.user.dto.UserDto;
-import com.pch.user.po.UserPo;
+import com.pch.user.model.dto.UserDto;
+import com.pch.user.model.po.UserPo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;

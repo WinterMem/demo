@@ -1,7 +1,7 @@
 package com.pch.user.service;
 
-import com.pch.user.dto.auth.OAuth2CreateTokenDTO;
-import com.pch.user.po.oauth2.OAuth2AccessTokenPo;
+import com.pch.user.model.dto.auth.OAuth2CreateTokenDTO;
+import com.pch.user.model.po.oauth2.OAuth2AccessTokenPo;
 
 /**
  * OAuth 接口

@@ -24,8 +24,10 @@ spring:
     dateFormat: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
     default-property-inclusion: NON_NULL
+  main:
+    allow-bean-definition-overriding: true
   cache:
     type: redis
   redis:
     redisson:
-      config: classpath:redisson.yml
+      config: classpath:application-redisson.yml

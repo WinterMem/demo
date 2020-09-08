@@ -2,8 +2,8 @@ package com.pch.user.convert;
 
 import java.util.List;
 
-import com.pch.user.dto.CommodityDto;
-import com.pch.user.po.CommodityPo;
+import com.pch.user.model.dto.CommodityDto;
+import com.pch.user.model.po.CommodityPo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
