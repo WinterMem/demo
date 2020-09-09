@@ -14,7 +14,7 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <beanUtils.version>1.9.3</beanUtils.version>
+    <beanUtils.version>1.9.4</beanUtils.version>
     <commons.version>3.10</commons.version>
     <hutool.varsion>4.5.7</hutool.varsion>
   </properties>
