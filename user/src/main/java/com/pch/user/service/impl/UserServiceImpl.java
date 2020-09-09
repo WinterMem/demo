@@ -9,10 +9,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.pch.common.constant.SysState;
+import com.pch.common.exception.ServiceException;
 import com.pch.user.convert.UserConvert;
 import com.pch.user.dao.UserRepository;
 import com.pch.user.model.dto.UserDto;
-import com.pch.common.exception.ServiceException;
 import com.pch.user.model.po.MyUserDetails;
 import com.pch.user.model.po.UserPo;
 import com.pch.user.service.UserService;
@@ -27,7 +27,6 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
-//    private UserConvert.INSTANCE
 
     @Override
     public UserDetails loadUserByUsername(String username) {

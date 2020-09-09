@@ -1,4 +1,4 @@
-package com.pch.security.config;
+package com.pch.user.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

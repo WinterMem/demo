@@ -1,4 +1,4 @@
-package com.pch.security.config;
+package com.pch.user.config;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;

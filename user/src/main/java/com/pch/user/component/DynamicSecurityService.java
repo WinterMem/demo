@@ -1,4 +1,4 @@
-package com.pch.security.component;
+package com.pch.user.component;
 
 import java.util.Map;
 

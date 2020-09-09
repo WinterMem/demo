@@ -1,9 +1,13 @@
-package com.pch.security.component;
+package com.pch.user.component;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * @author: pch
+ * @date: 2020/9/9
+ */
 @Configuration
 public class WebCors implements WebMvcConfigurer {
 

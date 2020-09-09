@@ -1,12 +1,14 @@
-package com.pch.security.config;
+package com.pch.user.config;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
+
 import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;

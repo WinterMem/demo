@@ -1,4 +1,4 @@
-package com.pch.security.config;
+package com.pch.user.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -18,14 +18,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.pch.security.component.DynamicAccessDecisionManager;
-import com.pch.security.component.DynamicSecurityFilter;
-import com.pch.security.component.DynamicSecurityMetadataSource;
-import com.pch.security.component.DynamicSecurityService;
-import com.pch.security.component.JwtAuthenticationTokenFilter;
-import com.pch.security.component.RestAuthenticationEntryPoint;
-import com.pch.security.component.RestfulAccessDeniedHandler;
-import com.pch.security.util.JwtUtil;
+import com.pch.user.component.DynamicAccessDecisionManager;
+import com.pch.user.component.DynamicSecurityFilter;
+import com.pch.user.component.DynamicSecurityMetadataSource;
+import com.pch.user.component.DynamicSecurityService;
+import com.pch.user.component.JwtAuthenticationTokenFilter;
+import com.pch.user.component.RestAuthenticationEntryPoint;
+import com.pch.user.component.RestfulAccessDeniedHandler;
+import com.pch.user.util.JwtUtil;
 
 /**
  * @author pch

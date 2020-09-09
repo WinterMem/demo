@@ -7,12 +7,16 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 记录日志注解
+ * <p>日志记录注解</p>
+ *
+ * @author: pch
+ * @date: 2020/9/9
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Log {
 
-	String value() default "";
+    String value() default "";
+    
 }

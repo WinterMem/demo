@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pch.common.annotation.Log;
 import com.pch.common.group.Insert;
 import com.pch.common.group.Update;
 import com.pch.common.response.CommonResult;
@@ -35,12 +36,14 @@ public class UserController {
         return byId.map(CommonResult::success).orElseGet(CommonResult::success);
     }
 
+    @Log
     @ApiOperation(value = "用户登录")
     @PostMapping("/login")
     public CommonResult<String> login(@Validated(Update.class) @RequestBody UserDto userDto) {
         return CommonResult.success(userService.login(userDto));
     }
 
+    @Log
     @ApiOperation(value = "用户注册")
     @PostMapping("/register")
     public CommonResult<Long> register(@Validated(Insert.class) @RequestBody UserDto userDto) {

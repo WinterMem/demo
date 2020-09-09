@@ -1,11 +1,12 @@
-package com.pch.security.config;
+package com.pch.user.config;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @Author: pch
