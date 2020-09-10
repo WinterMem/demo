@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pch.common.annotation.Log;
-import com.pch.common.group.Insert;
-import com.pch.common.group.Update;
 import com.pch.common.response.CommonResult;
-import com.pch.user.model.dto.UserDto;
+import com.pch.log.annotation.Log;
+import com.pch.user.model.dto.UserDTO;
 import com.pch.user.service.UserService;
 
 import io.swagger.annotations.Api;
@@ -31,22 +29,22 @@ public class UserController {
 
     @ApiOperation("通过id获取用户信息")
     @GetMapping("/{id}")
-    public CommonResult<UserDto> findById(@PathVariable Long id) {
-        Optional<UserDto> byId = userService.findById(id);
+    public CommonResult<UserDTO> findById(@PathVariable Long id) {
+        Optional<UserDTO> byId = userService.findById(id);
         return byId.map(CommonResult::success).orElseGet(CommonResult::success);
     }
 
     @Log
     @ApiOperation(value = "用户登录")
     @PostMapping("/login")
-    public CommonResult<String> login(@Validated(Update.class) @RequestBody UserDto userDto) {
+    public CommonResult<String> login(@Validated @RequestBody UserDTO userDto) {
         return CommonResult.success(userService.login(userDto));
     }
 
     @Log
     @ApiOperation(value = "用户注册")
     @PostMapping("/register")
-    public CommonResult<Long> register(@Validated(Insert.class) @RequestBody UserDto userDto) {
+    public CommonResult<Long> register(@Validated @RequestBody UserDTO userDto) {
         return CommonResult.success(userService.register(userDto));
     }
 

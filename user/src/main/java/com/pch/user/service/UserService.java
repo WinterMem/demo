@@ -6,16 +6,16 @@ import javax.transaction.Transactional;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.pch.user.model.dto.UserDto;
+import com.pch.user.model.dto.UserDTO;
 
 public interface UserService {
 
     UserDetails loadUserByUsername(String username);
 
     @Transactional
-    Long register(UserDto userDTO);
+    Long register(UserDTO userDTO);
 
-    String login(UserDto userDTO);
+    String login(UserDTO userDTO);
 
-    Optional<UserDto> findById(Long id);
+    Optional<UserDTO> findById(Long id);
 }

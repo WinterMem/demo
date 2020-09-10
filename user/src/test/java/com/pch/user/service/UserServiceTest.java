@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pch.user.UserApplicationTests;
 import com.pch.user.dao.UserRepository;
-import com.pch.user.model.dto.UserDto;
-import com.pch.user.model.po.UserPo;
+import com.pch.user.model.domin.UserDO;
+import com.pch.user.model.dto.UserDTO;
 
 /**
  * @author: pch
@@ -22,16 +22,16 @@ public class UserServiceTest extends UserApplicationTests {
 
     @Test
     public void register() {
-        UserDto userDTO = new UserDto().setPassword("fire").setUsername("fire").setTelephone("177");
+        UserDTO userDTO = new UserDTO().setPassword("fire").setUsername("fire").setTelephone("177");
         userService.register(userDTO);
     }
 
     @Test
     public void testSave() {
-        UserPo userPo = new UserPo();
-        userPo.setId(1L)
-            .setLoginName("winter")
-            .setUsername("winter");
-        userRepository.save(userPo);
+        UserDO userDO = new UserDO();
+        userDO.setId(1L);
+        userDO.setLoginName("winter");
+        userDO .setUsername("winter");
+        userRepository.save(userDO);
     }
 }
