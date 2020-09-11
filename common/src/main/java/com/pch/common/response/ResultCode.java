@@ -10,9 +10,9 @@ public enum ResultCode implements IErrorCode {
     UNAUTHORIZED(401L, "暂未登录或token已经过期"),
     FORBIDDEN(403L, "没有相关权限");
 
-    private long code;
+    private final long code;
 
-    private String message;
+    private final String message;
 
     private ResultCode(Long code, String message) {
         this.code = code;

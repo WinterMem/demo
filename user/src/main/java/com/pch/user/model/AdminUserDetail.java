@@ -1,7 +1,7 @@
 package com.pch.user.model;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,16 +15,13 @@ import lombok.AllArgsConstructor;
  * @date: 2020/9/10
  */
 @AllArgsConstructor
-public class MyUserDetail implements UserDetails {
+public class AdminUserDetail implements UserDetails {
 
     private static final long serialVersionUID = 2752154068012264471L;
 
     private final UserDTO userDTO;
 
-//    private final List<MenuDTO> menuDTOS;
-
-    private final List<GrantedAuthority> authorities;
-
+    private final Set<? extends GrantedAuthority> authorities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -38,7 +35,7 @@ public class MyUserDetail implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userDTO.getUsername();
+        return userDTO.getLoginName();
     }
 
     @Override
@@ -48,7 +45,7 @@ public class MyUserDetail implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return userDTO.getLock();
+        return true;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.pch.user.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pch.common.response.CommonResult;
 import com.pch.log.annotation.Log;
 import com.pch.user.model.dto.UserDTO;
+import com.pch.user.model.vo.UserLoginVo;
 import com.pch.user.service.UserService;
 
 import io.swagger.annotations.Api;
@@ -34,10 +36,16 @@ public class UserController {
         return byId.map(CommonResult::success).orElseGet(CommonResult::success);
     }
 
+    @ApiOperation("获取用户集合")
+    @GetMapping("/list")
+    public CommonResult<List<UserDTO>> findAll() {
+        return CommonResult.success(userService.findAll());
+    }
+
     @Log
     @ApiOperation(value = "用户登录")
     @PostMapping("/login")
-    public CommonResult<String> login(@Validated @RequestBody UserDTO userDto) {
+    public CommonResult<String> login(@Validated @RequestBody UserLoginVo userDto) {
         return CommonResult.success(userService.login(userDto));
     }
 

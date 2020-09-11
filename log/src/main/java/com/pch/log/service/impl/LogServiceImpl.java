@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pch.log.model.domin.LogDO;
+import com.pch.log.model.domin.LogDOBase;
 import com.pch.log.model.dto.LogDTO;
 import com.pch.log.repository.LogRepository;
 import com.pch.log.service.LogService;
@@ -26,14 +26,14 @@ public class LogServiceImpl implements LogService {
 
     @Override
     public List<LogDTO> findAll() {
-        List<LogDO> all = logRepository.findAll();
+        List<LogDOBase> all = logRepository.findAll();
         return all.stream().map(logDO -> logMapper.toEntity(logDO)).collect(Collectors.toList());
     }
 
     @Override
     public Long save(LogDTO logDTO) {
-        LogDO logDO = logMapper.toDto(logDTO);
-        LogDO save = logRepository.save(logDO);
+        LogDOBase logDO = logMapper.toDto(logDTO);
+        LogDOBase save = logRepository.save(logDO);
         return save.getId();
     }
 

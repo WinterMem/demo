@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,12 +24,14 @@ import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @Author: pch
+ * @author: pch
+ * @date: 2020/9/11
  */
 @Slf4j
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Autowired
+    @Qualifier("userServiceImpl")
     private UserDetailsService userDetailsService;
 
     @Autowired

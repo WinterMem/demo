@@ -1,4 +1,4 @@
-package com.pch.user.exception;
+package com.pch.common.exception;
 
 import com.pch.common.constant.SysState;
 
@@ -10,7 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public final class ServiceException extends RuntimeException {
+public class ServiceException extends RuntimeException {
 
     private static final long serialVersionUID = 820763453066753527L;
 

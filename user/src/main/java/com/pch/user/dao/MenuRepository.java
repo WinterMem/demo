@@ -1,0 +1,20 @@
+package com.pch.user.dao;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
+import com.pch.user.model.domin.MenuDOBase;
+
+/**
+ * @author: pch
+ * @date: 2020/9/11
+ */
+public interface MenuRepository extends CrudRepository<MenuDOBase, Long> {
+
+    @Query("select m from MenuDOBase m inner join RoleMenuDO rm on rm.menuId = m.id "
+            + "inner join UserRoleDO ur on ur.roleId = rm.roleId where ur.userId = :userId")
+    List<MenuDOBase> findByUserId(@Param("userId") Long userId);
+}

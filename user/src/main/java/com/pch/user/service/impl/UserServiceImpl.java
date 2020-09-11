@@ -1,8 +1,17 @@
 package com.pch.user.service.impl;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -10,12 +19,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.pch.common.constant.SysState;
+import com.pch.common.exception.ServiceException;
 import com.pch.user.convert.UserConvert;
+import com.pch.user.dao.MenuRepository;
 import com.pch.user.dao.UserRepository;
-import com.pch.user.exception.ServiceException;
+import com.pch.user.model.AdminUserDetail;
+import com.pch.user.model.domin.MenuDOBase;
 import com.pch.user.model.domin.UserDO;
 import com.pch.user.model.dto.UserDTO;
+import com.pch.user.model.vo.UserLoginVo;
+import com.pch.user.service.UserMapper;
 import com.pch.user.service.UserService;
+import com.pch.user.util.JwtUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,21 +41,44 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
+    private UserMapper userMapper;
+    @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private MenuRepository menuRepository;
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        Optional<UserDO> userDO = userRepository.findByLoginName(username);
-        if (!userDO.isPresent()) {
+        Optional<UserDO> userDOOptional = userRepository.findByLoginName(username);
+        if (!userDOOptional.isPresent()) {
             throw new UsernameNotFoundException("用户名不存在");
         }
-        return null;
+        UserDTO userDTO = userMapper.toEntity(userDOOptional.get());
+        List<MenuDOBase> menuDOS = menuRepository.findByUserId(userDTO.getId());
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        menuDOS.forEach(
+                menuDO -> authorities.add(new SimpleGrantedAuthority(menuDO.getPermission())));
+        return new AdminUserDetail(userDTO, authorities);
     }
 
     @Override
-    public String login(UserDTO userDTO) {
+    public String login(UserLoginVo userLoginVo) {
+        UserDetails userDetails = loadUserByUsername(userLoginVo.getLoginName());
+        if (!passwordEncoder.matches(userLoginVo.getPassword(), userDetails.getPassword())) {
+            throw new BadCredentialsException("密码错误");
+        }
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return jwtUtil.generateToken(userDetails);
+    }
 
-        return null;
+    @Override
+    public List<UserDTO> findAll() {
+        List<UserDO> all = userRepository.findAll();
+        return all.stream().map(userDO -> userMapper.toEntity(userDO)).collect(Collectors.toList());
     }
 
     @Override

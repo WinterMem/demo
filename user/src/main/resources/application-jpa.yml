@@ -1,11 +1,12 @@
 spring:
   jpa:
-    hibernate.ddl-auto: update
+    hibernate:
+      ddl-auto: update
     show-sql: true
     open-in-view: false
     properties: #使用redisson做二级缓存，项目地址：https://github.com/redisson/redisson
       hibernate.format_sql: true
-      hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
       hibernate.cache.region.factory_class: org.redisson.hibernate.RedissonRegionFactory
       hibernate.cache.use_second_level_cache: true #启用二级缓存
       hibernate.cache.use_query_cache: true #启用查询缓存

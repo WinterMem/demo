@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.pch.common.model.BaseDO;
+import com.pch.common.model.DOBase;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +22,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @Table(name = "tb_log")
-public class LogDO extends BaseDO {
+public class LogDOBase extends DOBase {
 
     private static final long serialVersionUID = -6949766987335754417L;
 
@@ -60,7 +60,7 @@ public class LogDO extends BaseDO {
     @CreationTimestamp
     private LocalDateTime createTime;
 
-    public LogDO(String logType, Long time) {
+    public LogDOBase(String logType, Long time) {
         this.logType = logType;
         this.time = time;
     }
