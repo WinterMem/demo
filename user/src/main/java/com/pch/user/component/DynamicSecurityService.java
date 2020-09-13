@@ -5,7 +5,8 @@ import java.util.Map;
 import org.springframework.security.access.ConfigAttribute;
 
 /**
- * @Author: pch
+ * @author: pch
+ * @date: 2020/9/12
  */
 public interface DynamicSecurityService {
 

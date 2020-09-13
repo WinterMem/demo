@@ -4,8 +4,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pch.user.UserApplicationTests;
+import com.pch.user.dao.RoleRepository;
 import com.pch.user.dao.UserRepository;
-import com.pch.user.model.domin.UserDO;
+import com.pch.user.model.domin.RoleDO;
 import com.pch.user.model.dto.UserDTO;
 
 /**
@@ -19,6 +20,8 @@ public class UserServiceTest extends UserApplicationTests {
     private UserService userService;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Test
     public void register() {
@@ -28,10 +31,7 @@ public class UserServiceTest extends UserApplicationTests {
 
     @Test
     public void testSave() {
-        UserDO userDO = new UserDO();
-        userDO.setId(1L);
-        userDO.setLoginName("winter");
-        userDO .setUsername("winter");
-        userRepository.save(userDO);
+
+
     }
 }

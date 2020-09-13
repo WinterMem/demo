@@ -6,15 +6,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.pch.user.model.domin.MenuDOBase;
+import com.pch.user.model.domin.MenuDO;
 
 /**
  * @author: pch
  * @date: 2020/9/11
  */
-public interface MenuRepository extends CrudRepository<MenuDOBase, Long> {
+public interface MenuRepository extends CrudRepository<MenuDO, Long> {
 
-    @Query("select m from MenuDOBase m inner join RoleMenuDO rm on rm.menuId = m.id "
+    @Query("select m from MenuDO m inner join RoleMenuDO rm on rm.menuId = m.id "
             + "inner join UserRoleDO ur on ur.roleId = rm.roleId where ur.userId = :userId")
-    List<MenuDOBase> findByUserId(@Param("userId") Long userId);
+    List<MenuDO> findByUserId(@Param("userId") Long userId);
 }

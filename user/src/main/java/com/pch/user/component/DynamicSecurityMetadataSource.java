@@ -17,7 +17,8 @@ import org.springframework.util.PathMatcher;
 import cn.hutool.core.util.URLUtil;
 
 /**
- * @Author: pch
+ * @author: pch
+ * @date: 2020/9/12
  */
 public class DynamicSecurityMetadataSource implements SecurityMetadataSource {
 

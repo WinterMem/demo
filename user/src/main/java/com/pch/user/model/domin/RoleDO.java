@@ -20,7 +20,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "tb_role")
 @EqualsAndHashCode(callSuper = true)
-public class RoleDOBase extends DOBase {
+public class RoleDO extends DOBase {
 
     private static final long serialVersionUID = -4919650087858107971L;
 

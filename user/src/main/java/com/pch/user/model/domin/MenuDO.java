@@ -17,7 +17,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "tb_menu")
-public class MenuDOBase extends DOBase {
+public class MenuDO extends DOBase {
 
     private static final long serialVersionUID = -8809441423776369114L;
 

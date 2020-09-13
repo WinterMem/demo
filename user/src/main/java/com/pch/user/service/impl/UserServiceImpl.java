@@ -20,11 +20,10 @@ import org.springframework.stereotype.Service;
 
 import com.pch.common.constant.SysState;
 import com.pch.common.exception.ServiceException;
-import com.pch.user.convert.UserConvert;
 import com.pch.user.dao.MenuRepository;
 import com.pch.user.dao.UserRepository;
 import com.pch.user.model.AdminUserDetail;
-import com.pch.user.model.domin.MenuDOBase;
+import com.pch.user.model.domin.MenuDO;
 import com.pch.user.model.domin.UserDO;
 import com.pch.user.model.dto.UserDTO;
 import com.pch.user.model.vo.UserLoginVo;
@@ -56,7 +55,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new UsernameNotFoundException("用户名不存在");
         }
         UserDTO userDTO = userMapper.toEntity(userDOOptional.get());
-        List<MenuDOBase> menuDOS = menuRepository.findByUserId(userDTO.getId());
+        List<MenuDO> menuDOS = menuRepository.findByUserId(userDTO.getId());
         Set<GrantedAuthority> authorities = new HashSet<>();
         menuDOS.forEach(
                 menuDO -> authorities.add(new SimpleGrantedAuthority(menuDO.getPermission())));
@@ -85,7 +84,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public Optional<UserDTO> findById(Long id) {
         Optional<UserDO> byId = userRepository.findById(id);
 
-        return byId.map(userPO -> UserConvert.INSTANCE.UserDTOCovert(byId));
+        return byId.map(userPO -> userMapper.toEntity(userPO));
     }
 
     @Override
@@ -101,7 +100,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new ServiceException(SysState.user_telephone_exist);
         }
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        UserDO save = userRepository.save(UserConvert.INSTANCE.userDtoToPoConvert(userDTO));
+        UserDO save = userRepository.save(userMapper.toDto(userDTO));
         return save.getId();
     }
 }

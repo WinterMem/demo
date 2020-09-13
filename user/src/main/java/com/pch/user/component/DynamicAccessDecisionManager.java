@@ -12,7 +12,8 @@ import org.springframework.security.core.GrantedAuthority;
 import cn.hutool.core.collection.CollUtil;
 
 /**
- * @Author: pch
+ * @author: pch
+ * @date: 2020/9/12
  */
 public class DynamicAccessDecisionManager implements AccessDecisionManager {
 

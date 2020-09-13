@@ -22,7 +22,8 @@ import org.springframework.util.PathMatcher;
 import com.pch.user.config.IgnoreUrlsConfig;
 
 /**
- * @Author: pch
+ * @author: pch
+ * @date: 2020/9/12
  */
 public class DynamicSecurityFilter extends AbstractSecurityInterceptor implements Filter {
 

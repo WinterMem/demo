@@ -22,7 +22,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @Table(name = "tb_log")
-public class LogDOBase extends DOBase {
+public class LogDO extends DOBase {
 
     private static final long serialVersionUID = -6949766987335754417L;
 
@@ -59,9 +59,4 @@ public class LogDOBase extends DOBase {
     /** 创建日期 */
     @CreationTimestamp
     private LocalDateTime createTime;
-
-    public LogDOBase(String logType, Long time) {
-        this.logType = logType;
-        this.time = time;
-    }
 }
