@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import com.pch.user.model.domin.RoleDO;
 import com.pch.user.model.dto.RoleDTO;
 
 /**
@@ -27,6 +26,7 @@ public interface RoleService {
      *
      * @return 成功返回true
      */
+    @Transactional
     Boolean update(RoleDTO roleDTO);
 
     /**
@@ -34,7 +34,7 @@ public interface RoleService {
      *
      * @return 返回角色集合
      */
-    List<RoleDO> findAll();
+    List<RoleDTO> findAll();
 
     /**
      * 通过用户id查询角色集合
@@ -44,4 +44,12 @@ public interface RoleService {
      */
     List<RoleDTO> findRoleByUserId(Long userId);
 
+    /**
+     * 绑定用户
+     *
+     * @param id        角色id
+     * @param userIds       用户id集合
+     */
+    @Transactional
+    Boolean bindUsers(Long id, List<Long> userIds);
 }

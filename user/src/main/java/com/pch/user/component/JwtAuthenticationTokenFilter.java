@@ -18,7 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.pch.user.util.JwtUtil;
+import com.pch.user.util.JwtUtils;
 
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private UserDetailsService userDetailsService;
 
     @Autowired
-    private JwtUtil jwtUtil;
+    private JwtUtils jwtUtils;
 
     @Value("${jwt.tokenHeader}")
     private String tokenHeader;
@@ -50,11 +50,11 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         String authHeader = request.getHeader(tokenHeader);
         if (StrUtil.isNotBlank(authHeader) && authHeader.startsWith(this.tokenHead)) {
             String authToken = authHeader.substring(this.tokenHead.length());
-            String username = jwtUtil.getUserNameFromToken(authToken);
+            String username = jwtUtils.getUserNameFromToken(authToken);
             if (StrUtil.isNotBlank(username)
                     && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                if (jwtUtil.validateToken(authToken, userDetails)) {
+                if (jwtUtils.validateToken(authToken, userDetails)) {
                     UsernamePasswordAuthenticationToken auth =
                             new UsernamePasswordAuthenticationToken(userDetails, null,
                                     userDetails.getAuthorities());

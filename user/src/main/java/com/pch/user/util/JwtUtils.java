@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date: 2020/9/9
  */
 @Slf4j
-public class JwtUtil implements Serializable {
+public class JwtUtils implements Serializable {
 
     private static final long serialVersionUID = -2871409030618576906L;
 
@@ -66,7 +66,7 @@ public class JwtUtil implements Serializable {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (ExpiredJwtException e) {
-            JwtUtil.log.info("JWT格式验证失败:{}", token);
+            JwtUtils.log.info("JWT格式验证失败:{}", token);
         }
         return claims;
     }
@@ -95,8 +95,8 @@ public class JwtUtil implements Serializable {
      */
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put(JwtUtil.CLAIM_KEY_CREATED, new Date());
-        claims.put(JwtUtil.CLAIM_KEY_USERNAME, userDetails.getUsername());
+        claims.put(JwtUtils.CLAIM_KEY_CREATED, new Date());
+        claims.put(JwtUtils.CLAIM_KEY_USERNAME, userDetails.getUsername());
         return generateToken(claims);
     }
 
@@ -137,7 +137,7 @@ public class JwtUtil implements Serializable {
         if (tokenRefreshJustBefore(token, 30 * 60)) {
             return token;
         } else {
-            claims.put(JwtUtil.CLAIM_KEY_CREATED, new Date());
+            claims.put(JwtUtils.CLAIM_KEY_CREATED, new Date());
             return generateToken(claims);
         }
     }
@@ -148,7 +148,7 @@ public class JwtUtil implements Serializable {
      */
     private boolean tokenRefreshJustBefore(String token, int time) {
         Claims claims = getClaimsFromToken(token);
-        Date created = claims.get(JwtUtil.CLAIM_KEY_CREATED, Date.class);
+        Date created = claims.get(JwtUtils.CLAIM_KEY_CREATED, Date.class);
         Date refreshDate = new Date();
         //刷新时间在创建时间的指定时间内
         return refreshDate.after(created) && refreshDate

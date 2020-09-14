@@ -3,6 +3,7 @@ package com.pch.user.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,15 +42,29 @@ public class RoleController {
 
     @PutMapping
     @ApiOperation("更新角色")
-    public CommonResult<Long> update(
+    public CommonResult<Boolean> update(
             @Validated({DTOBase.Update.class}) @RequestBody RoleDTO roleDTO) {
-        return CommonResult.success(roleService.create(roleDTO));
+        return CommonResult.success(roleService.update(roleDTO));
     }
 
     @GetMapping("/{userId}")
     @ApiOperation("查询用户相关角色")
+    @PreAuthorize("hasAuthority('admin')")
     public CommonResult<List<RoleDTO>> findRolesByUserId(@PathVariable Long userId) {
         return CommonResult.success(roleService.findRoleByUserId(userId));
+    }
+
+    @GetMapping
+    @ApiOperation("查询所有角色")
+    public CommonResult<List<RoleDTO>> findAll() {
+        return CommonResult.success(roleService.findAll());
+    }
+
+    @PutMapping("/bindUsers/{id}")
+    @ApiOperation("角色关联用户")
+    public CommonResult<Boolean> bindUsers(@PathVariable Long id,
+            @RequestBody List<Long> userIds) {
+        return CommonResult.success(roleService.bindUsers(id, userIds));
     }
 
 }

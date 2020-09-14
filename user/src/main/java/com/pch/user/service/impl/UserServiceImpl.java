@@ -29,7 +29,7 @@ import com.pch.user.model.dto.UserDTO;
 import com.pch.user.model.vo.UserLoginVo;
 import com.pch.user.service.UserMapper;
 import com.pch.user.service.UserService;
-import com.pch.user.util.JwtUtil;
+import com.pch.user.util.JwtUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private MenuRepository menuRepository;
     @Autowired
-    private JwtUtil jwtUtil;
+    private JwtUtils jwtUtils;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                 userDetails, null, userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return jwtUtil.generateToken(userDetails);
+        return jwtUtils.generateToken(userDetails);
     }
 
     @Override

@@ -25,7 +25,7 @@ import com.pch.user.component.DynamicSecurityService;
 import com.pch.user.component.JwtAuthenticationTokenFilter;
 import com.pch.user.component.RestAuthenticationEntryPoint;
 import com.pch.user.component.RestfulAccessDeniedHandler;
-import com.pch.user.util.JwtUtil;
+import com.pch.user.util.JwtUtils;
 
 /**
  * @author pch
@@ -129,7 +129,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public JwtUtil jwtUtil() {
-        return new JwtUtil();
+    public JwtUtils jwtUtil() {
+        return new JwtUtils();
     }
 }

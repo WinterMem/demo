@@ -2,7 +2,7 @@ package com.pch.common.model;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,7 +21,7 @@ public class DTOBase implements Serializable {
 
     private static final long serialVersionUID = 1669987249741375694L;
 
-    @NotEmpty(groups = Update.class)
+    @NotNull(groups = Update.class)
     private Long id;
 
     public @interface Insert{}
