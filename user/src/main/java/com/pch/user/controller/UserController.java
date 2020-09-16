@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pch.common.response.CommonResult;
-import com.pch.log.annotation.Log;
+import com.pch.common.annotation.Log;
 import com.pch.user.model.dto.UserDTO;
 import com.pch.user.model.vo.UserLoginVo;
 import com.pch.user.service.UserService;

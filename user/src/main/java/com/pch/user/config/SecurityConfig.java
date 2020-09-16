@@ -1,7 +1,5 @@
 package com.pch.user.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,13 +13,8 @@ import org.springframework.security.config.annotation.web.configurers.Expression
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.pch.user.component.DynamicAccessDecisionManager;
-import com.pch.user.component.DynamicSecurityFilter;
-import com.pch.user.component.DynamicSecurityMetadataSource;
-import com.pch.user.component.DynamicSecurityService;
 import com.pch.user.component.JwtAuthenticationTokenFilter;
 import com.pch.user.component.RestAuthenticationEntryPoint;
 import com.pch.user.component.RestfulAccessDeniedHandler;
@@ -36,8 +29,8 @@ import com.pch.user.util.JwtUtils;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired(required = false)
-    private DynamicSecurityService dynamicSecurityService;
+//    @Autowired(required = false)
+//    private DynamicSecurityService dynamicSecurityService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -74,10 +67,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilterBefore(jwtAuthenticationTokenFilter(),
                         UsernamePasswordAuthenticationFilter.class);
-        if (dynamicSecurityService != null) {
-            registry.and()
-                    .addFilterBefore(dynamicSecurityFilter(), FilterSecurityInterceptor.class);
-        }
+//        if (dynamicSecurityService != null) {
+//            registry.and()
+//                    .addFilterBefore(dynamicSecurityFilter(), FilterSecurityInterceptor.class);
+//        }
     }
 
     @Override
@@ -110,23 +103,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new RestAuthenticationEntryPoint();
     }
 
-    @ConditionalOnBean(name = "dynamicSecurityService")
-    @Bean
-    public DynamicAccessDecisionManager dynamicAccessDecisionManager() {
-        return new DynamicAccessDecisionManager();
-    }
+//    @ConditionalOnBean(name = "dynamicSecurityService")
+//    @Bean
+//    public DynamicAccessDecisionManager dynamicAccessDecisionManager() {
+//        return new DynamicAccessDecisionManager();
+//    }
 
-    @ConditionalOnBean(name = "dynamicSecurityService")
-    @Bean
-    public DynamicSecurityFilter dynamicSecurityFilter() {
-        return new DynamicSecurityFilter();
-    }
+//    @ConditionalOnBean(name = "dynamicSecurityService")
+//    @Bean
+//    public DynamicSecurityFilter dynamicSecurityFilter() {
+//        return new DynamicSecurityFilter();
+//    }
 
-    @ConditionalOnBean(name = "dynamicSecurityService")
-    @Bean
-    public DynamicSecurityMetadataSource dynamicSecurityMetadataSource() {
-        return new DynamicSecurityMetadataSource();
-    }
+//    @ConditionalOnBean(name = "dynamicSecurityService")
+//    @Bean
+//    public DynamicSecurityMetadataSource dynamicSecurityMetadataSource() {
+//        return new DynamicSecurityMetadataSource();
+//    }
 
     @Bean
     public JwtUtils jwtUtil() {

@@ -1,4 +1,4 @@
-package com.pch.log.annotation;
+package com.pch.common.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -7,16 +7,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * <p>日志记录注解</p>
- *
+ * 匿名访问
  * @author: pch
- * @date: 2020/9/9
+ * @date: 2020/9/16
  */
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface Log {
+@Target({ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Anonymous {
 
-    String value() default "";
-    
 }

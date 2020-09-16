@@ -1,10 +1,10 @@
-package com.pch.user.service;
+package com.pch.user.service.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 
-import com.pch.log.mapper.BaseMapper;
+import com.pch.common.mapper.BaseMapper;
 import com.pch.user.model.domin.UserDO;
 import com.pch.user.model.dto.UserDTO;
 

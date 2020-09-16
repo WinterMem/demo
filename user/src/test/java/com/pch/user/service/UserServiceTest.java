@@ -4,9 +4,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pch.user.UserApplicationTests;
-import com.pch.user.dao.RoleRepository;
-import com.pch.user.dao.UserRepository;
-import com.pch.user.model.domin.RoleDO;
+import com.pch.user.repository.RoleRepository;
+import com.pch.user.repository.UserRepository;
 import com.pch.user.model.dto.UserDTO;
 
 /**

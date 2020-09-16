@@ -1,4 +1,4 @@
-package com.pch.log.controller;
+package com.pch.user.controller;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pch.common.response.CommonResult;
-import com.pch.log.model.dto.LogDTO;
-import com.pch.log.service.LogService;
+import com.pch.user.model.dto.LogDTO;
+import com.pch.user.service.LogService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

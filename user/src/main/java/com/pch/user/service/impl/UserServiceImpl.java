@@ -20,14 +20,14 @@ import org.springframework.stereotype.Service;
 
 import com.pch.common.constant.SysState;
 import com.pch.common.exception.ServiceException;
-import com.pch.user.dao.MenuRepository;
-import com.pch.user.dao.UserRepository;
+import com.pch.user.repository.MenuRepository;
+import com.pch.user.repository.UserRepository;
 import com.pch.user.model.AdminUserDetail;
 import com.pch.user.model.domin.MenuDO;
 import com.pch.user.model.domin.UserDO;
 import com.pch.user.model.dto.UserDTO;
 import com.pch.user.model.vo.UserLoginVo;
-import com.pch.user.service.UserMapper;
+import com.pch.user.service.mapper.UserMapper;
 import com.pch.user.service.UserService;
 import com.pch.user.util.JwtUtils;
 

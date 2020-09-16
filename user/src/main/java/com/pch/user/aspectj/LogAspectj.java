@@ -1,4 +1,4 @@
-package com.pch.log.aspectj;
+package com.pch.user.aspectj;
 
 import java.lang.reflect.Method;
 
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.pch.log.model.dto.LogDTO;
+import com.pch.user.model.dto.LogDTO;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiOperation;
 @Component
 public class LogAspectj {
 
-    @Pointcut("@annotation(com.pch.log.annotation.Log)")
+    @Pointcut("@annotation(com.pch.common.annotation.Log)")
     public void webLog() {
     }
 

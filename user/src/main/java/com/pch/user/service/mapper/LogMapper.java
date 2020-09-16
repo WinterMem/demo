@@ -1,11 +1,11 @@
-package com.pch.log.service.mapper;
+package com.pch.user.service.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
-import com.pch.log.mapper.BaseMapper;
-import com.pch.log.model.domin.LogDO;
-import com.pch.log.model.dto.LogDTO;
+import com.pch.common.mapper.BaseMapper;
+import com.pch.user.model.domin.LogDO;
+import com.pch.user.model.dto.LogDTO;
 
 /**
  * @author: pch

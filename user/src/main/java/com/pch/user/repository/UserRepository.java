@@ -1,4 +1,4 @@
-package com.pch.user.dao;
+package com.pch.user.repository;
 
 import java.util.List;
 import java.util.Optional;

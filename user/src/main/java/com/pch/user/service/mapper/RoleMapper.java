@@ -1,9 +1,9 @@
-package com.pch.user.service;
+package com.pch.user.service.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
-import com.pch.log.mapper.BaseMapper;
+import com.pch.common.mapper.BaseMapper;
 import com.pch.user.model.domin.RoleDO;
 import com.pch.user.model.dto.RoleDTO;
 

@@ -66,4 +66,14 @@ public class GlobalExceptionHandler {
         return CommonResult.failed(e.getCode(), e.getMessage());
     }
 
+    /**
+     * 其他异常管理
+     *
+     */
+    @ExceptionHandler(Exception.class)
+    public CommonResult<Boolean> ExceptionHandler(Exception e) {
+        e.printStackTrace();
+        return CommonResult.failed();
+    }
+
 }

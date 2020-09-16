@@ -1,4 +1,4 @@
-package com.pch.log.service.impl;
+package com.pch.user.service.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pch.log.model.domin.LogDO;
-import com.pch.log.model.dto.LogDTO;
-import com.pch.log.repository.LogRepository;
-import com.pch.log.service.LogService;
-import com.pch.log.service.mapper.LogMapper;
+import com.pch.user.model.domin.LogDO;
+import com.pch.user.model.dto.LogDTO;
+import com.pch.user.repository.LogRepository;
+import com.pch.user.service.LogService;
+import com.pch.user.service.mapper.LogMapper;
 
 /**
  * @author: pch

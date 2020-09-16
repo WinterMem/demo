@@ -1,4 +1,4 @@
-package com.pch.log.mapper;
+package com.pch.common.mapper;
 
 import java.util.List;
 

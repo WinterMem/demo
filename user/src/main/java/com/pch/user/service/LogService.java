@@ -1,10 +1,10 @@
-package com.pch.log.service;
+package com.pch.user.service;
 
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pch.log.model.dto.LogDTO;
+import com.pch.user.model.dto.LogDTO;
 
 /**
  * @author: pch

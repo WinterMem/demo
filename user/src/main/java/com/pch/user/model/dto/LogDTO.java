@@ -1,30 +1,15 @@
-package com.pch.log.model.domin;
+package com.pch.user.model.dto;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.CreationTimestamp;
-
-import com.pch.common.model.DOBase;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * @author: pch
  * @date: 2020/9/10
  */
-@Getter
-@Setter
-@Entity
-@NoArgsConstructor
-@Table(name = "tb_log")
-public class LogDO extends DOBase {
-
-    private static final long serialVersionUID = -6949766987335754417L;
+@Data
+public class LogDTO {
 
     /** 操作用户 */
     private String username;
@@ -57,6 +42,6 @@ public class LogDO extends DOBase {
     private byte[] exceptionDetail;
 
     /** 创建日期 */
-    @CreationTimestamp
     private LocalDateTime createTime;
+
 }

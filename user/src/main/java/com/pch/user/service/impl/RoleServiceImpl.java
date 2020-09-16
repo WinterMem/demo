@@ -7,14 +7,13 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
-import com.pch.user.dao.RoleRepository;
-import com.pch.user.dao.UserRoleRepository;
+import com.pch.user.repository.RoleRepository;
+import com.pch.user.repository.UserRoleRepository;
 import com.pch.user.model.domin.RoleDO;
 import com.pch.user.model.domin.UserRoleDO;
 import com.pch.user.model.dto.RoleDTO;
-import com.pch.user.service.RoleMapper;
+import com.pch.user.service.mapper.RoleMapper;
 import com.pch.user.service.RoleService;
 
 import cn.hutool.core.bean.BeanUtil;
