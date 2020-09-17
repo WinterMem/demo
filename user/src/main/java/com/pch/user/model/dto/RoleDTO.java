@@ -31,7 +31,7 @@ public class RoleDTO extends DTOBase {
     private String description;
 
     @ApiModelProperty("启用禁用")
-    private Boolean enable;
+    private Boolean enable = true;
 
     @ApiModelProperty("创建人")
     private String createBy;

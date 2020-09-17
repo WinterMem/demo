@@ -5,8 +5,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.pch.common.config.IdSnowflake;
+import com.pch.common.constant.SpaceConstant;
+import com.pch.user.service.RedisService;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
@@ -29,6 +34,11 @@ public class JwtUtils implements Serializable {
 
     private static final String CLAIM_KEY_CREATED = "created";
 
+    public static final String CLAIM_KEY_TOKEN_ID = "tokenId";
+
+    @Autowired
+    private RedisService redisService;
+
     @Value("${jwt.secret}")
     private String secret;
 
@@ -38,6 +48,9 @@ public class JwtUtils implements Serializable {
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
+    @Value("${jwt.iss}")
+    private String iss;
+
     /**
      * 根据负载生成JWT的token
      *
@@ -45,11 +58,15 @@ public class JwtUtils implements Serializable {
      * @return token
      */
     public String generateToken(Map<String, Object> claims) {
-        return Jwts.builder()
+        String token = Jwts.builder()
+                .setIssuer(iss)
                 .setClaims(claims)
                 .setExpiration(generateExpirationDate())
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
+        redisService.set(SpaceConstant.REDIS_TOKEN_SPACE + claims.get(CLAIM_KEY_TOKEN_ID),
+                token, 1000 * 60 * 60);
+        return token;
     }
 
     /**
@@ -95,7 +112,9 @@ public class JwtUtils implements Serializable {
      */
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
+        String tokenId = IdSnowflake.nextId().toString();
         claims.put(JwtUtils.CLAIM_KEY_CREATED, new Date());
+        claims.put(JwtUtils.CLAIM_KEY_TOKEN_ID, tokenId);
         claims.put(JwtUtils.CLAIM_KEY_USERNAME, userDetails.getUsername());
         return generateToken(claims);
     }
@@ -109,8 +128,14 @@ public class JwtUtils implements Serializable {
      */
     public boolean validateToken(String token, UserDetails userDetails) {
         Claims claimsFromToken = getClaimsFromToken(token);
-        return claimsFromToken.getSubject().equals(userDetails.getUsername()) && !isTokenExpired(
-                token);
+        String cacheToken = redisService
+                .get(SpaceConstant.REDIS_TOKEN_SPACE + claimsFromToken.get(CLAIM_KEY_TOKEN_ID))
+                .toString();
+        if (null == cacheToken) {
+            return false;
+        }
+        return claimsFromToken.getSubject().equals(userDetails.getUsername())
+                && !isTokenExpired(token);
     }
 
     /**
@@ -151,8 +176,8 @@ public class JwtUtils implements Serializable {
         Date created = claims.get(JwtUtils.CLAIM_KEY_CREATED, Date.class);
         Date refreshDate = new Date();
         //刷新时间在创建时间的指定时间内
-        return refreshDate.after(created) && refreshDate
-                .before(DateUtil.offsetSecond(created, time));
+        return refreshDate.after(created)
+                && refreshDate.before(DateUtil.offsetSecond(created, time));
     }
 
     /**

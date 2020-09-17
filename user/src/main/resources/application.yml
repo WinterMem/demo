@@ -8,9 +8,9 @@ spring:
   profiles:
     include: dev
 
-#mybatis:
-#  mapper-locations: classpath:mapper/*.xml
-#  type-aliases-package: com.pch.user.model.po
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.pch.user.model.do
 
 
 secure:
@@ -39,3 +39,4 @@ jwt:
   secret: my_user_demo #JWT加解密使用的密钥
   expiration: 604800 #JWT的超期限时间(60*60*24*7)
   tokenHead: 'Bearer ' #JWT负载中拿到开头
+  iss: pch #签发人

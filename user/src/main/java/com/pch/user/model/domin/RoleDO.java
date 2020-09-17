@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.annotation.CreatedBy;
 
 import com.pch.common.model.DOBase;
@@ -20,6 +22,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "tb_role")
 @EqualsAndHashCode(callSuper = true)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class RoleDO extends DOBase {
 
     private static final long serialVersionUID = -4919650087858107971L;

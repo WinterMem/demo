@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Getter;
@@ -29,7 +29,8 @@ public class DOBase implements Serializable {
     private static final long serialVersionUID = -6187240064997916904L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "IdSnowflake")
+    @GenericGenerator(name = "IdSnowflake", strategy = "com.pch.common.config.HibernateIdGenerator")
     private Long id;
 
     @Version

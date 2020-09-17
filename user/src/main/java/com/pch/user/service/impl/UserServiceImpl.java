@@ -83,7 +83,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public Optional<UserDTO> findById(Long id) {
         Optional<UserDO> byId = userRepository.findById(id);
-
         return byId.map(userPO -> userMapper.toEntity(userPO));
     }
 
@@ -100,7 +99,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new ServiceException(SysState.user_telephone_exist);
         }
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        UserDO save = userRepository.save(userMapper.toDto(userDTO));
+        UserDO userDO = userMapper.toDto(userDTO);
+        userDO.setEnable(true);
+        UserDO save = userRepository.save(userDO);
         return save.getId();
     }
 }

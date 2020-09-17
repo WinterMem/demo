@@ -10,7 +10,6 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 import com.pch.common.annotation.Anonymous;
-import com.pch.user.util.SecurityUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,12 +31,12 @@ public class WebAspectj {
         MethodSignature methodSignature = (MethodSignature) point.getSignature();
         Method method = methodSignature.getMethod();
         Anonymous annotation = method.getAnnotation(Anonymous.class);
-        SecurityUtils.getCurrentUser();
-        if (annotation != null) {
-            if (log.isDebugEnabled()) {
-                log.debug("ttt");
-            }
-        }
+//        SecurityUtils.getCurrentUser();
+//        if (annotation != null) {
+//            if (log.isDebugEnabled()) {
+//                log.debug("ttt");
+//            }
+//        }
     }
 
 }

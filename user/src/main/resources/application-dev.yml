@@ -31,3 +31,12 @@ spring:
   redis:
     redisson:
       config: classpath:application-redisson.yml
+  data:
+#    elasticsearch:
+#      elasticsearch:
+#        #集群名称
+#        cluster-name: elasticsearch
+#        #节点
+#        cluster-nodes: 127.0.0.1:9300
+    mongodb:
+      uri: mongodb://127.0.0.1:27017/pch

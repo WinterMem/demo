@@ -2,10 +2,8 @@ package com.pch.user.model.domin;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.pch.common.model.DOBase;
 
@@ -19,9 +17,9 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@Entity
 @NoArgsConstructor
-@Table(name = "tb_log")
+@Document("tb_log")
+//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class LogDO extends DOBase {
 
     private static final long serialVersionUID = -6949766987335754417L;
