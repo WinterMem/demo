@@ -20,17 +20,19 @@ import org.springframework.stereotype.Service;
 
 import com.pch.common.constant.SysState;
 import com.pch.common.exception.ServiceException;
-import com.pch.user.repository.MenuRepository;
-import com.pch.user.repository.UserRepository;
 import com.pch.user.model.AdminUserDetail;
 import com.pch.user.model.domin.MenuDO;
 import com.pch.user.model.domin.UserDO;
 import com.pch.user.model.dto.UserDTO;
 import com.pch.user.model.vo.UserLoginVo;
-import com.pch.user.service.mapper.UserMapper;
+import com.pch.user.repository.MenuRepository;
+import com.pch.user.repository.UserRepository;
 import com.pch.user.service.UserService;
+import com.pch.user.service.mapper.UserMapper;
 import com.pch.user.util.JwtUtils;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -72,6 +74,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 userDetails, null, userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return jwtUtils.generateToken(userDetails);
+    }
+
+    @Override
+    public Boolean update(UserDTO userDto) {
+        Optional<UserDO> byId = userRepository.findById(userDto.getId());
+        if (!byId.isPresent()) {
+            throw new ServiceException(SysState.user_id_not_exist);
+        }
+        byId.ifPresent(userDO ->
+                BeanUtil.copyProperties(userDO, userDto, CopyOptions.create().setIgnoreCase(true)));
+        return true;
     }
 
     @Override

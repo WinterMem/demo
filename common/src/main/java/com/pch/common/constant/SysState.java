@@ -10,7 +10,12 @@ public enum SysState {
     /*** user相关service错误编码 */
     user_exist(40000001L, "登录名已存在"),
     user_telephone_exist(40000002L, "手机号已存在"),
-    user_email_exist(40000003L, "邮箱已存在");
+    user_email_exist(40000003L, "邮箱已存在"),
+    user_id_not_exist(40000004L, "用户id不存在")
+
+    /**业务相关*/
+
+    ;
 
     private final Long code;
 

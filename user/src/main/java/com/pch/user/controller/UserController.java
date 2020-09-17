@@ -8,12 +8,14 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pch.common.response.CommonResult;
 import com.pch.common.annotation.Log;
+import com.pch.common.model.DTOBase;
+import com.pch.common.response.CommonResult;
 import com.pch.user.model.dto.UserDTO;
 import com.pch.user.model.vo.UserLoginVo;
 import com.pch.user.service.UserService;
@@ -47,6 +49,14 @@ public class UserController {
     @PostMapping("/login")
     public CommonResult<String> login(@Validated @RequestBody UserLoginVo userDto) {
         return CommonResult.success(userService.login(userDto));
+    }
+
+    @Log
+    @ApiOperation(value = "更新用户信息")
+    @PutMapping
+    public CommonResult<Boolean> update(
+            @Validated(DTOBase.Update.class) @RequestBody UserDTO userDto) {
+        return CommonResult.success(userService.update(userDto));
     }
 
     @Log

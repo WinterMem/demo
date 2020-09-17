@@ -61,6 +61,9 @@ public class GlobalExceptionHandler {
         return CommonResult.validateFailed(message);
     }
 
+    /**
+     * 处理业务异常
+     */
     @ExceptionHandler(ServiceException.class)
     public CommonResult<Boolean> ServiceExceptionHandler(ServiceException e) {
         return CommonResult.failed(e.getCode(), e.getMessage());
@@ -73,7 +76,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public CommonResult<Boolean> ExceptionHandler(Exception e) {
         e.printStackTrace();
-        return CommonResult.failed();
+        return CommonResult.failed(e.getMessage());
     }
 
 }

@@ -28,7 +28,7 @@ public class SecurityUtils {
      * @return UserDetails
      */
     public static UserDetails getCurrentUser() {
-        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Authentication authentication = getAuthentication();
         if (authentication == null) {
             throw new BadRequestException(ResultCode.UNAUTHORIZED.getCode(), "当前登录状态过期");
         }
@@ -41,12 +41,21 @@ public class SecurityUtils {
     }
 
     /**
+     * 获取用户认证
+     *
+     * @return  认证信息
+     */
+    public static Authentication getAuthentication() {
+        return SecurityContextHolder.getContext().getAuthentication();
+    }
+
+    /**
      * 获取系统用户名称
      *
      * @return 系统用户名称
      */
     public static String getCurrentUsername() {
-        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Authentication authentication = getAuthentication();
         if (authentication == null) {
             throw new BadRequestException(ResultCode.UNAUTHORIZED.getCode(), "当前登录状态过期");
         }

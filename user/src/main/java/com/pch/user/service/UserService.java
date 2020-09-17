@@ -37,4 +37,13 @@ public interface UserService {
      *
      */
     List<UserDTO> findAll();
+
+    /**
+     * 更新用户信息
+     *
+     * @param userDto   用户dto
+     * @return 成功返回true
+     */
+    @Transactional
+    Boolean update(UserDTO userDto);
 }
