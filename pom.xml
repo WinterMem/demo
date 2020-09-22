@@ -34,6 +34,7 @@
     <knife4j.version>2.0.4</knife4j.version>
     <baomidou.version>3.3.2</baomidou.version>
     <druid.version>1.1.10</druid.version>
+    <ip2region.version>1.7.2</ip2region.version>
   </properties>
 
   <dependencies>
@@ -75,6 +76,11 @@
       <groupId>org.redisson</groupId>
       <artifactId>redisson-hibernate-53</artifactId>
       <version>${redisson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.lionsoul</groupId>
+      <artifactId>ip2region</artifactId>
+      <version>${ip2region.version}</version>
     </dependency>
 
     <dependency>

@@ -1,15 +1,17 @@
 package com.pch.user.model.domin;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.pch.common.model.DOBase;
-
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @author: pch
@@ -17,12 +19,19 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @Document("tb_log")
-//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class LogDO extends DOBase {
+public class LogDO implements Serializable {
 
     private static final long serialVersionUID = -6949766987335754417L;
+
+    @Id
+    private Long id;
+
+    /** 用户id */
+    private Long userId;
 
     /** 操作用户 */
     private String username;

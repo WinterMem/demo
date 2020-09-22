@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class WebAspectj {
 
-    @Pointcut("execution(public * com.pch.*.controller.*.*(..))")
+    @Pointcut("execution(public * com.pch.user.controller.*.*(..))")
     public void webPoint() {
     }
 
@@ -30,13 +30,7 @@ public class WebAspectj {
     public void doBefore(JoinPoint point) {
         MethodSignature methodSignature = (MethodSignature) point.getSignature();
         Method method = methodSignature.getMethod();
-        Anonymous annotation = method.getAnnotation(Anonymous.class);
-//        SecurityUtils.getCurrentUser();
-//        if (annotation != null) {
-//            if (log.isDebugEnabled()) {
-//                log.debug("ttt");
-//            }
-//        }
+        Anonymous anonymous = method.getAnnotation(Anonymous.class);
     }
 
 }

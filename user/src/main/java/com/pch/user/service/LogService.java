@@ -2,6 +2,10 @@ package com.pch.user.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pch.user.model.dto.LogDTO;
@@ -16,4 +20,8 @@ public interface LogService {
     Long save(LogDTO logDTO);
 
     List<LogDTO> findAll();
+
+    @Async
+    @Transactional
+    void save(HttpServletRequest request, ProceedingJoinPoint point);
 }

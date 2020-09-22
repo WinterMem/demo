@@ -2,17 +2,26 @@ package com.pch.user.model.dto;
 
 import java.time.LocalDateTime;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @author: pch
  * @date: 2020/9/10
  */
 @Data
+@Accessors(chain = true)
+@ApiModel("日志模型")
 public class LogDTO {
+
+    private Long id;
 
     /** 操作用户 */
     private String username;
+
+    /** 用户id */
+    private Long userId;
 
     /** 描述 */
     private String description;

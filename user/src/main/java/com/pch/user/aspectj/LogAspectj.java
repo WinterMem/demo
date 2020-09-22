@@ -1,7 +1,5 @@
 package com.pch.user.aspectj;
 
-import java.lang.reflect.Method;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.aspectj.lang.JoinPoint;
@@ -10,14 +8,12 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.pch.user.model.dto.LogDTO;
-
-import io.swagger.annotations.ApiOperation;
+import com.pch.user.service.LogService;
 
 /**
  * 日志切面
@@ -25,6 +21,9 @@ import io.swagger.annotations.ApiOperation;
 @Aspect
 @Component
 public class LogAspectj {
+
+    @Autowired
+    private LogService logService;
 
     @Pointcut("@annotation(com.pch.common.annotation.Log)")
     public void webLog() {
@@ -34,15 +33,8 @@ public class LogAspectj {
     public Object around(ProceedingJoinPoint point) throws Throwable {
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder
                 .getRequestAttributes();
-        LogDTO logDTO = new LogDTO();
         HttpServletRequest request = requestAttributes.getRequest();
-        MethodSignature signature = (MethodSignature) point.getSignature();
-        Method method = signature.getMethod();
-        if (method.isAnnotationPresent(ApiOperation.class)) {
-            ApiOperation annotation = method.getAnnotation(ApiOperation.class);
-            String value = annotation.value();
-            logDTO.setDescription(value);
-        }
+        logService.save(request, point);
         return point.proceed();
     }
 

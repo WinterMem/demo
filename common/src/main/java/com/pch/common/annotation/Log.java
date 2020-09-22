@@ -18,5 +18,7 @@ import java.lang.annotation.Target;
 public @interface Log {
 
     String value() default "";
+
+    String desc() default "";
     
 }
