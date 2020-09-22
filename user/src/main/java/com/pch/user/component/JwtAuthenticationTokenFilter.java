@@ -19,6 +19,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.pch.user.util.JwtUtils;
+import com.pch.user.util.SecurityUtils;
 
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -51,8 +52,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         if (StrUtil.isNotBlank(authHeader) && authHeader.startsWith(this.tokenHead)) {
             String authToken = authHeader.substring(this.tokenHead.length());
             String username = jwtUtils.getUserNameFromToken(authToken);
-            if (StrUtil.isNotBlank(username)
-                    && SecurityContextHolder.getContext().getAuthentication() == null) {
+            if (StrUtil.isNotBlank(username) && SecurityUtils.getAuthentication() == null) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 if (jwtUtils.validateToken(authToken, userDetails)) {
                     UsernamePasswordAuthenticationToken auth =

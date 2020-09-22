@@ -23,5 +23,5 @@ public interface LogService {
 
     @Async
     @Transactional
-    void save(HttpServletRequest request, ProceedingJoinPoint point);
+    void save(HttpServletRequest request, ProceedingJoinPoint point) throws Throwable;
 }

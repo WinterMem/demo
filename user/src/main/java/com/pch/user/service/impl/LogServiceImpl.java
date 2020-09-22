@@ -6,12 +6,14 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.poi.ss.formula.functions.T;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pch.common.annotation.Log;
+import com.pch.common.response.CommonResult;
 import com.pch.user.model.domin.LogDO;
 import com.pch.user.model.dto.LogDTO;
 import com.pch.user.repository.LogRepository;
@@ -33,16 +35,15 @@ public class LogServiceImpl implements LogService {
     private LogMapper logMapper;
 
     @Override
-    public void save(HttpServletRequest request, ProceedingJoinPoint point) {
+    public void save(HttpServletRequest request, ProceedingJoinPoint point) throws Throwable {
         LogDTO logDTO = new LogDTO();
         String username = SecurityUtils.getAuthentication() != null ?
                 SecurityUtils.getCurrentUsername() : "AnonymousUser";
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();
-        try {
-            Object proceed = point.proceed();
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+        Object proceed = point.proceed();
+        if (proceed instanceof CommonResult) {
+            Object data = ((CommonResult<?>) proceed).getData();
         }
         // 方法路径
         String methodName = point.getTarget().getClass().getName() + "." + signature.getName() + "()";

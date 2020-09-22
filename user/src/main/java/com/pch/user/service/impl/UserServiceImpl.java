@@ -111,6 +111,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (count > 0) {
             throw new ServiceException(SysState.user_telephone_exist);
         }
+        count = userRepository
+                .countByLoginName(userDTO.getLoginName() != null ? userDTO.getLoginName() : "");
+        if (count > 0) {
+            throw new ServiceException(SysState.user_login_name_exist);
+        }
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         UserDO userDO = userMapper.toDto(userDTO);
         userDO.setEnable(true);

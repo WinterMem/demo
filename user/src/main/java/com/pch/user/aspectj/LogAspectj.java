@@ -46,7 +46,8 @@ public class LogAspectj {
      */
     @AfterThrowing(pointcut = "webLog()", throwing = "e")
     public void logAfterThrowing(JoinPoint joinPoint, Throwable e) {
-        System.out.println("---");
+        String message = e.getMessage();
+        System.out.println();
     }
 
 }

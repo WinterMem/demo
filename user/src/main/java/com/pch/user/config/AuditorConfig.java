@@ -18,7 +18,7 @@ public class AuditorConfig implements AuditorAware<String> {
     @Override
     public Optional<String> getCurrentAuditor() {
         Authentication authentication = SecurityUtils.getAuthentication();
-        if (authentication != null) {
+        if (authentication != null && !authentication.getPrincipal().equals("anonymousUser")) {
             return Optional.of(SecurityUtils.getCurrentUsername());
         }
         return Optional.of("System");

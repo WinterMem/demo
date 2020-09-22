@@ -18,4 +18,6 @@ public interface UserRepository extends PagingAndSortingRepository<UserDO, Long>
     Integer countByTelephone(String telephone);
 
     List<UserDO> findAll();
+
+    Integer countByLoginName(String loginName);
 }
