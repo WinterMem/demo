@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.pch.common.config.IdSnowflake;
-import com.pch.common.constant.SpaceConstant;
+import com.pch.common.constant.AdminConstant;
 import com.pch.user.service.RedisService;
 
 import cn.hutool.core.date.DateUtil;
@@ -64,7 +64,7 @@ public class JwtUtils implements Serializable {
                 .setExpiration(generateExpirationDate())
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
-        redisService.set(SpaceConstant.REDIS_TOKEN_SPACE + claims.get(CLAIM_KEY_TOKEN_ID),
+        redisService.set(AdminConstant.REDIS_TOKEN_SPACE + claims.get(CLAIM_KEY_TOKEN_ID),
                 token, 1000 * 60 * 60);
         return token;
     }
@@ -129,7 +129,7 @@ public class JwtUtils implements Serializable {
     public boolean validateToken(String token, UserDetails userDetails) {
         Claims claimsFromToken = getClaimsFromToken(token);
         String cacheToken = redisService
-                .get(SpaceConstant.REDIS_TOKEN_SPACE + claimsFromToken.get(CLAIM_KEY_TOKEN_ID))
+                .get(AdminConstant.REDIS_TOKEN_SPACE + claimsFromToken.get(CLAIM_KEY_TOKEN_ID))
                 .toString();
         if (null == cacheToken) {
             return false;

@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.poi.ss.formula.functions.T;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ import com.pch.user.repository.LogRepository;
 import com.pch.user.service.LogService;
 import com.pch.user.service.mapper.LogMapper;
 import com.pch.user.util.SecurityUtils;
-import com.pch.user.util.StringUtils;
 
 /**
  * @author: pch
@@ -50,7 +48,7 @@ public class LogServiceImpl implements LogService {
         // 获取注解信息
         Log annotation = method.getAnnotation(Log.class);
         logDTO.setUsername(username)
-                .setBrowser(StringUtils.getBrowser(request))
+//                .setRequestIp()
                 .setId(SecurityUtils.getCurrentUserId())
                 .setMethod(methodName)
                 .setDescription(annotation.desc());
