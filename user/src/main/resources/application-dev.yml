@@ -1,3 +1,7 @@
+logging:
+  file:
+    path: D:/pch/log # 开发日志路径
+
 # datasource
 spring:
   profiles:
