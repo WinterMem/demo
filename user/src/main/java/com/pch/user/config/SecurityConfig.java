@@ -1,5 +1,6 @@
 package com.pch.user.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -32,6 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    @Autowired(required = false)
 //    private DynamicSecurityService dynamicSecurityService;
 
+    @Autowired
+    private IgnoreUrlsConfig ignoreUrlsConfig;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService())
@@ -42,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry =
                 httpSecurity.authorizeRequests();
-        for (String url : ignoreUrlsConfig().getUrls()) {
+        for (String url : ignoreUrlsConfig.getUrls()) {
             registry.antMatchers(url).permitAll();
         }
         registry.antMatchers(HttpMethod.OPTIONS)
@@ -76,11 +80,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
-    }
-
-    @Bean
-    public IgnoreUrlsConfig ignoreUrlsConfig() {
-        return new IgnoreUrlsConfig();
     }
 
     @Bean

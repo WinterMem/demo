@@ -28,6 +28,11 @@ public interface RedisService {
     Object get(String key);
 
     /**
+     * 批量获取属性
+     */
+    List<Object> multiGet(List<String> keys);
+
+    /**
      * 删除属性
      */
     Boolean del(String key);

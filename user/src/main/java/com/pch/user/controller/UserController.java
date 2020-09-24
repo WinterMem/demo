@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pch.common.annotation.Log;
+import com.pch.common.annotation.Logging;
 import com.pch.common.model.DTOBase;
 import com.pch.common.response.CommonResult;
 import com.pch.user.model.dto.UserDTO;
@@ -44,14 +44,14 @@ public class UserController {
         return CommonResult.success(userService.findAll());
     }
 
-    @Log
+    @Logging
     @ApiOperation(value = "用户登录")
     @PostMapping("/login")
     public CommonResult<String> login(@Validated @RequestBody UserLoginVo userDto) {
         return CommonResult.success(userService.login(userDto));
     }
 
-    @Log
+    @Logging
     @ApiOperation(value = "更新用户信息")
     @PutMapping
     public CommonResult<Boolean> update(
@@ -59,7 +59,7 @@ public class UserController {
         return CommonResult.success(userService.update(userDto));
     }
 
-    @Log
+    @Logging
     @ApiOperation(value = "用户注册")
     @PostMapping("/register")
     public CommonResult<Long> register(@Validated @RequestBody UserDTO userDto) {

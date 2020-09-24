@@ -2,6 +2,7 @@ package com.pch.user.service.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.pch.user.service.RedisService;
 
 
@@ -20,6 +23,7 @@ import com.pch.user.service.RedisService;
  */
 @Service
 public class RedisServiceImpl implements RedisService {
+
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
@@ -31,6 +35,15 @@ public class RedisServiceImpl implements RedisService {
     @Override
     public void set(String key, Object value) {
         redisTemplate.opsForValue().set(key, value);
+    }
+
+    @Override
+    public List<Object> multiGet(List<String> keys) {
+        List<Object> list = redisTemplate.opsForValue().multiGet(Sets.newHashSet(keys));
+        List<Object> resultList = Lists.newArrayList();
+        Optional.ofNullable(list).ifPresent(
+                e -> list.forEach(ele -> Optional.ofNullable(ele).ifPresent(resultList::add)));
+        return resultList;
     }
 
     @Override

@@ -49,7 +49,7 @@ public class LogDO implements Serializable {
     private String logType;
 
     /** 请求ip */
-    private String requestIp;
+    private String ip;
 
     /** 地址 */
     private String address;
